@@ -15,18 +15,16 @@
 {% block content %}
     <div class="container h-100">
         <div class="row h-100">
-            <div class="justify-content-center lookingforpenpalswrapper">
-                <div class="lookingforpenpals">
-                    <h1 class="display-4 logo-font text-black">
-                        Mamas Looking for Penpals
-                    </h1>
-                </div>
-                <table id="penpals">
+            <div class="col-7 col-md-6 my-auto">
+                <h1 class="display-4 logo-font text-black d-flex justify-content-center">
+                    Mamas Looking for Penpals
+                </h1>
+                <table>
                     {% for profile in profiles %}
                         <tr>
-                            <td class="profilename">{{profile.name}}</td>
-                            <td class="profileage">{{profile.age}}</td>
-                            <td class="profilecountry">{{profile.country}}</td>
+                            <td>{{profile.name}}</td>
+                            <td>{{profile.age}}</td>
+                            <td>{{profile.country}}</td>
                         </tr>
                     {% endfor %}
                 </table>
