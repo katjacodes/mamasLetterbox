@@ -29,5 +29,13 @@ def profile(request):
 
 
 def add_profile(request):
-    info = ItemForm()
+    if request.method == 'POST':
+        info = ItemForm(request.POST)
+        if info.is_valid():
+            info.save()
+            return redirect('profile')
+            
+    else:
+        info = ItemForm()
+        
     return render(request,"home/add_profile.html",{'form':info})

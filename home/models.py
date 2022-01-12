@@ -21,19 +21,21 @@ class Item(models.Model):
         choices=LANGUAGE_CHOICES,
         default=ENGLISH,
         null=False,
-        blank=False
+        blank=False,
     )
     language2 = models.CharField(
         max_length=3,
         choices=LANGUAGE_CHOICES,
         default=ENGLISH,
-        blank=True
+        blank=True,
+        null=True,
     )
     language3 = models.CharField(
         max_length=3,
         choices=LANGUAGE_CHOICES,
         default=ENGLISH,
-        blank=True
+        blank=True,
+        null=True,
     )
 
     name = models.CharField(max_length=50, null=False, blank=False)
@@ -41,13 +43,13 @@ class Item(models.Model):
     age = models.IntegerField(null=False, blank=False)
     country = CountryField(null=False, blank=False)
     hobby1 = models.CharField(max_length=50, null=False, blank=False)
-    hobby2 = models.CharField(max_length=50, blank=True)
-    hobby3 = models.CharField(max_length=50, blank=True)
+    hobby2 = models.CharField(max_length=50, blank=True, null=True, default="Second Hobby")
+    hobby3 = models.CharField(max_length=50, blank=True, null=True, default="Third Hobby")
     childAge1 = models.IntegerField(null=False, blank=False)
-    childAge2 = models.IntegerField(blank=True)
-    childAge3 = models.IntegerField(blank=True)
-    childAge4 = models.IntegerField(blank=True)
-    childAge5 = models.IntegerField(blank=True)
+    childAge2 = models.IntegerField(blank=True, null=True, default=0)
+    childAge3 = models.IntegerField(blank=True, null=True, default=0)
+    childAge4 = models.IntegerField(blank=True, null=True, default=0)
+    childAge5 = models.IntegerField(blank=True, null=True, default=0)
     email = models.EmailField(max_length=50, null=False, blank=False)
 
     def __str__(self):
