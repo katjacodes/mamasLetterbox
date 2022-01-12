@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Item
+from .forms import ItemForm
 
 # Create your views here.
 
@@ -28,9 +29,5 @@ def profile(request):
 
 
 def add_profile(request):
-    profiles = Item.objects.all().filter(name="Katja")
-    context = {
-        'profiles': profiles
-    }
-
-    return render(request, 'home/add_profile.html', context)
+    info = ItemForm()
+    return render(request,"home/add_profile.html",{'form':info})

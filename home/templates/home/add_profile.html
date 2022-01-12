@@ -15,19 +15,17 @@
 {% block content %}
     <div class="container h-100">
         <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black d-flex justify-content-center">
-                    Add Your Profile
-                </h1>
-                <table>
-                    {% for profile in profiles %}
-                        <tr>
-                            <td>{{profile.name}}</td>
-                            <td>{{profile.age}}</td>
-                            <td>{{profile.country}}</td>
-                        </tr>
-                    {% endfor %}
-                </table>
+            <div class="col-7 col-md-6 my-auto lookingforpenpalswrapper">
+                <div class="profilewrapper">
+                    <h1 class="display-4 logo-font text-black d-flex justify-content-center">
+                        Add Your Profile
+                    </h1>
+                </div>
+                <form id="profile" class="profile" method="POST" action="add_profile">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Add Profile</button>
+                </form>
             </div>
         </div>
     </div>
