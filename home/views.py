@@ -16,3 +16,21 @@ def penpals(request):
         'profiles': profiles
     }
     return render(request, 'home/penpals.html', context)
+
+
+def profile(request):
+    profiles = Item.objects.all().filter(name="Katja")
+    context = {
+        'profiles': profiles
+    }
+
+    return render(request, 'home/profile.html', context)
+
+
+def add_profile(request):
+    profiles = Item.objects.all().filter(name="Katja")
+    context = {
+        'profiles': profiles
+    }
+
+    return render(request, 'home/add_profile.html', context)

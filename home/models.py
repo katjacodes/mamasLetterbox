@@ -26,12 +26,14 @@ class Item(models.Model):
     language2 = models.CharField(
         max_length=3,
         choices=LANGUAGE_CHOICES,
-        default=ENGLISH
+        default=ENGLISH,
+        blank=True
     )
     language3 = models.CharField(
         max_length=3,
         choices=LANGUAGE_CHOICES,
-        default=ENGLISH
+        default=ENGLISH,
+        blank=True
     )
 
     name = models.CharField(max_length=50, null=False, blank=False)
@@ -39,13 +41,13 @@ class Item(models.Model):
     age = models.IntegerField(null=False, blank=False)
     country = CountryField(null=False, blank=False)
     hobby1 = models.CharField(max_length=50, null=False, blank=False)
-    hobby2 = models.CharField(max_length=50)
-    hobby3 = models.CharField(max_length=50)
+    hobby2 = models.CharField(max_length=50, blank=True, null=True)
+    hobby3 = models.CharField(max_length=50, blank=True, null=True)
     childAge1 = models.IntegerField(null=False, blank=False)
-    childAge2 = models.IntegerField()
-    childAge3 = models.IntegerField()
-    childAge4 = models.IntegerField()
-    childAge5 = models.IntegerField()
+    childAge2 = models.IntegerField(blank=True, null=True)
+    childAge3 = models.IntegerField(blank=True, null=True)
+    childAge4 = models.IntegerField(blank=True, null=True)
+    childAge5 = models.IntegerField(blank=True, null=True)
     email = models.EmailField(max_length=50, null=False, blank=False)
 
     def __str__(self):

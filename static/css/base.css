@@ -88,24 +88,24 @@ body {
 }
 
 
-/* -------------------------------- PENPAL LISTINGS PAGE -------------------------------- */
+/* -------------------------------- PENPAL LISTINGS & PROFILE PAGES -------------------------------- */
 
 .profilename {
     color: black;
     font-size: 30px;
 }
 
-.profileage {
+.profileinfo {
     color: black;
     font-size: 20px;
 }
 
-.profilecountry {
+.profileinfo {
     color: black;
     font-size: 20px;
 }
 
-.lookingforpenpals {
+.lookingforpenpals, .profile {
     padding: .8rem;
     background-color: rgba(214, 173, 184, 0.6);
     border-radius: 25px;
@@ -114,7 +114,7 @@ body {
     -o-border-radius: 25px;
  }
 
- .lookingforpenpalswrapper {
+ .lookingforpenpalswrapper, .profilewrapper {
      margin-left: auto;
      margin-right: auto;
  }
@@ -136,6 +136,17 @@ body {
   #penpals tr:nth-child(even){background-color: rgba(214, 173, 184, .8)}
   
   #penpals tr:hover {background-color: rgba(222, 178, 139, .8);}
+
+  #profile {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  #profile li {
+    list-style-type: none;
+}
 
 
  
