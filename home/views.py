@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Item
 from .forms import ItemForm
 
@@ -29,13 +29,22 @@ def profile(request):
 
 
 def add_profile(request):
+    profiles = Item.objects.all().filter(name="Katja")
+    context = {
+        'profiles': profiles
+    }
+
     if request.method == 'POST':
         info = ItemForm(request.POST)
         if info.is_valid():
             info.save()
-            return redirect('profile')
+            return redirect('home/home.html', context)
             
     else:
         info = ItemForm()
         
-    return render(request,"home/add_profile.html",{'form':info})
+    return render(request, 'home/add_profile.html', {'form':info})
+
+
+def edit_profile(request):
+    return render(request, 'home/edit_profile.html')

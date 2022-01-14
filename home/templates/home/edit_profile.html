@@ -15,13 +15,13 @@
             <div class="col-7 col-md-6 my-auto lookingforpenpalswrapper">
                 <div class="profilewrapper">
                     <h1 class="display-4 logo-font text-black d-flex justify-content-center">
-                        Add Your Profile
+                        Edit Your Profile
                     </h1>
                 </div>
-                <form id="profile" class="profile" method="POST" action="add_profile/">
+                <form id="profile" class="profile" method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">Add Profile</button>
+                    <button type="submit">Update Profile</button>
                 </form>
             </div>
         </div>

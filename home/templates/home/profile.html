@@ -25,21 +25,21 @@
                 </div>
                 <ul id="profile" class="profile">
                     {% for profile in profiles %}
-                            <li class="profileinfo">Pronouns: {{profile.pronoun}}</li>
-                            <li class="profileinfo">Age: {{profile.age}}</li>
-                            <li class="profileinfo">Country: {{profile.country}}</li>
-                            <li class="profileinfo">Language: {{profile.language1}}</li>
-                            <li class="profileinfo">Language 2: {{profile.language2}}</li>
-                            <li class="profileinfo">Language 3: {{profile.language3}}</li>
-                            <li class="profileinfo">Hobby: {{profile.hobby1}}</li>
-                            <li class="profileinfo">Hobby 2: {{profile.hobby2}}</li>
-                            <li class="profileinfo">Hobby 3: {{profile.hobby3}}</li>
-                            <li class="profileinfo">Age Child: {{profile.childAge1}}</li>
-                            <li class="profileinfo">Age Child 2: {{profile.childAge2}}</li>
-                            <li class="profileinfo">Age Child 3: {{profile.childAge3}}</li>
-                            <li class="profileinfo">Age Child 4: {{profile.childAge4}}</li>
-                            <li class="profileinfo">Age Child 5: {{childAge5}}</li>
-                            <li class="profileinfo">Email: {{profile.email}}</li>
+                            <li class="profileinfo">Pronouns: {{profile.pronoun}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Age: {{profile.age}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Country: {{profile.country}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Language: {{profile.language1}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Language 2: {{profile.language2}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Language 3: {{profile.language3}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Hobby: {{profile.hobby1}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Hobby 2: {{profile.hobby2}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Hobby 3: {{profile.hobby3}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Age Child: {{profile.childAge1}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Age Child 2: {{profile.childAge2}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Age Child 3: {{profile.childAge3}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Age Child 4: {{profile.childAge4}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Age Child 5: {{childAge5}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
+                            <li class="profileinfo">Email: {{profile.email}} <a href="/edit_profile/{{ item.id }}"><buton>Edit</buton></a></li>
                     {% endfor %}
                 </ul>
             </div>
