@@ -21,9 +21,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-    path('penpals/', include('home.urls')), # redundant?
-    path('profile/', include('home.urls')), # may get moved to Writers app -- reduntant?
-    path('add_profile/', include('home.urls')), # may get moved to Writers app -- reduntant?
-    path('edit_profile/<id>/', include('home.urls')), # may get moved to Writers app -- reduntant?
-    path('writers/', include('writers.urls'))
+    # path('penpals/', include('home.urls')), # redundant?
+    # path('profile/', include('home.urls')), # may get moved to Penpals app -- reduntant?
+    # path('add_profile/', include('home.urls')), # may get moved to Penpals app -- reduntant?
+    # path('edit_profile/<id>/', include('home.urls')), # may get moved to Penpals app -- reduntant?
+    path('penpal/', include('penpals.urls'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

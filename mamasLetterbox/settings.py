@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'home',
     'django_countries',
-    'writers',
+    'penpals',
 ]
 
 MIDDLEWARE = [

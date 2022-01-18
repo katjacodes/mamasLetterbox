@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Item',
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.TextField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('language1', models.CharField(choices=[('ENG', 'English'), ('SPA', 'Spanish'), ('FRA', 'French'), ('DEU', 'German'), ('POR', 'Portuguese')], default='ENG', max_length=3)),
                 ('language2', models.CharField(choices=[('ENG', 'English'), ('SPA', 'Spanish'), ('FRA', 'French'), ('DEU', 'German'), ('POR', 'Portuguese')], default='ENG', max_length=3)),
                 ('language3', models.CharField(choices=[('ENG', 'English'), ('SPA', 'Spanish'), ('FRA', 'French'), ('DEU', 'German'), ('POR', 'Portuguese')], default='ENG', max_length=3)),
