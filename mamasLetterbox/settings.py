@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'home',
     'django_countries',
     'penpals',
+    'bag',
+    'stationery',
 ]
 
 MIDDLEWARE = [
