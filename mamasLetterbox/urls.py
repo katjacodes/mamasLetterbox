@@ -25,5 +25,6 @@ urlpatterns = [
     # path('profile/', include('home.urls')), # may get moved to Penpals app -- reduntant?
     # path('add_profile/', include('home.urls')), # may get moved to Penpals app -- reduntant?
     # path('edit_profile/<id>/', include('home.urls')), # may get moved to Penpals app -- reduntant?
-    path('penpal/', include('penpals.urls'))
+    path('penpal/', include('penpals.urls')),
+    path('stationery/', include('stationery.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
