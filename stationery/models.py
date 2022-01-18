@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Stationery(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Stationery'
+
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
