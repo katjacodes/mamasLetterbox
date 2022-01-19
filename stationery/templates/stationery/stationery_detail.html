@@ -1,0 +1,39 @@
+<!--- credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/6a51b60c029c78540dd10d7c5b241eaa902aa000/home/templates/home/index.html and edited to fit project needs -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid stationerycase">
+        <div class="row">
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
+                <div class="image-container my-5">
+                    {% if stationery_item.image %}
+                        <a href="{{ stationery_item.image.url }}"> target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ stationery_item.image.url }}" alt="{{ stationery_item.name }}">
+                        </a>
+                        {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ stationery_item.name }}">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="product-details-container mb-5 mt-md-5">
+                    <p class="mb-0 stationeryinfo">{{ stationery_item.name }}</p>
+                    <p class="lead mb-0 text-left font-weight-bold stationeryinfo">${{ stationery_item.price }}</p>
+                    <p class="mt-3 stationeryinfo">{{ stationery_item.description }}</p>
+                </div>
+            </div>                     
+        </div>
+    </div>
+{% endblock %}

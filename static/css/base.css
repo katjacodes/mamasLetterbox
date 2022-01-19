@@ -73,31 +73,6 @@ body {
 	z-index: -1;
 }
 
-/* -------------------------------- Media Queries */
-
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
-}
-
-/* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-
-    .header-container {
-        padding-top: 164px;
-    }
-}
-
-
 /* -------------------------------- PENPAL LISTINGS & PROFILE PAGES -------------------------------- */
 
 .profilename {
@@ -159,15 +134,44 @@ body {
 }
 
 
-/* -------------------------------- STATIONERY PAGE -------------------------------- */
+/* -------------------------------- STATIONERY & STATIONERY DETAILS PAGES -------------------------------- */
 
 
 .stationerycase {
     padding: .8rem;
-    background-color: rgba(214, 173, 184, 0.6);
+    background-color: rgba(214, 173, 184, 0.9);
     border-radius: 25px;
     -webkit-border-radius: 25px;
     -moz-border-radius: 25px;
     -o-border-radius: 25px;
  }
+
+ .stationeryinfo {
+    color: black;
+    font-size: 20px;
+}
+
+/* -------------------------------- MEDIA QUERIES -------------------------------- */
+
+/* Slightly larger container on xl screens */
+@media (min-width: 1200px) {
+    .container {
+      max-width: 80%;
+    }
+  }
+  
+  /* fixed top navbar only on medium and up */
+  @media (min-width: 992px) {
+      .fixed-top-desktop-only {
+          position: fixed;
+          top: 0;
+          right: 0;
+          left: 0;
+          z-index: 1030;
+      }
+  
+      .header-container {
+          padding-top: 164px;
+      }
+  }
  

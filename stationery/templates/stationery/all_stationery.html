@@ -12,7 +12,6 @@
 {% endblock %}
 
 {% block content %}
-    <div class=""></div>
     <div class="container-fluid">
         <div class="row">
             <div class="col text-center mt-3">
@@ -29,13 +28,13 @@
                             <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                                 <div class="card h-100 border-0">
                                     {% if stationery_item.image %}
-                                    <a href="">
-                                        <img class="card-img-top img-fluid" src="{{ stationery_item.image.url }}" alt="{{ stationery_item.name }}">
-                                    </a>
-                                    {% else %}
-                                    <a href="">
-                                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ stationery_item.name }}">
-                                    </a>
+                                        <a href="{% url 'stationery_detail' stationery_item.id %}"> target="_blank">
+                                            <img class="card-img-top img-fluid" src="{{ stationery_item.image.url }}" alt="{{ stationery_item.name }}">
+                                        </a>
+                                        {% else %}
+                                        <a href="{% url 'stationery_detail' stationery_item.id %}">
+                                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ stationery_item.name }}">
+                                        </a>
                                     {% endif %}
                                     <div class="card-body pb-0">
                                         <p class="mb-0">{{ stationery_item.name }}</p>
