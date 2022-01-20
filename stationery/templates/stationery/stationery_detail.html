@@ -17,7 +17,7 @@
             <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
                     {% if stationery_item.image %}
-                        <a href="{{ stationery_item.image.url }}"> target="_blank">
+                        <a href="{% url 'stationery_detail' stationery_item.id %}"> target="_blank">
                             <img class="card-img-top img-fluid" src="{{ stationery_item.image.url }}" alt="{{ stationery_item.name }}">
                         </a>
                         {% else %}
