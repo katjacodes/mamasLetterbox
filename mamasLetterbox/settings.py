@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'penpals',
     'bag',
     'stationery',
+    'subscriptions',
 ]
 
 MIDDLEWARE = [

@@ -24,4 +24,5 @@ urlpatterns = [
     path('penpal/', include('penpals.urls')),
     path('stationery/', include('stationery.urls')),
     path('bag/', include('bag.urls')),
+    path('subscriptions/', include('subscriptions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
