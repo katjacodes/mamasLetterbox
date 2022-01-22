@@ -44,8 +44,6 @@ INSTALLED_APPS = [
     'home',
     'django_countries',
     'penpals',
-    'bag',
-    'stationery',
     'subscriptions',
 ]
 
@@ -75,7 +73,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # required by allauth
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'bag.contexts.bag_contents',
                 'django.template.context_processors.media',
             ],
         },

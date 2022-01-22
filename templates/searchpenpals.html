@@ -1,0 +1,36 @@
+<!--- credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/6a51b60c029c78540dd10d7c5b241eaa902aa000/home/templates/home/index.html and edited to fit project needs -->
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="justify-content-center lookingforpenpalswrapper">
+                <div class="lookingforpenpals">
+                    <h1 class="display-4 logo-font text-black">
+                        Mamas Looking for Penpals
+                    </h1>
+                </div>
+                <table id="penpals">
+                    {% for profile in profiles %}
+                        <tr>
+                            <td class="profilename">{{profile.name}}</td>
+                            <td class="profileinfo">{{profile.age}}</td>
+                            <td class="profileinfo">{{profile.country}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

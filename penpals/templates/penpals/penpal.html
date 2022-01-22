@@ -19,13 +19,13 @@
                 <div class="profilewrapper">
                     <h1 class="display-4 logo-font text-black profile">
                         {% for penpal in penpals %}
-                            {{penpal.username}}
+                            {{penpal.name}}
                         {% endfor %}  
                     </h1>
                 </div>
                 <ul id="profile" class="profile">
                     {% for penpal in penpals %}
-                            <li class="profileinfo">Username: {{penpal.username}}</li>
+                            <li class="profileinfo">Name: {{penpal.name}}</li>
                             <li class="profileinfo">Age: {{penpal.age}} </li>
                             <li class="profileinfo">Pronouns: {{penpal.pronoun}} </li>
                             <li class="profileinfo">Age: {{penpal.age}} </li>
