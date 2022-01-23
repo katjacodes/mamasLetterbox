@@ -2,8 +2,6 @@ console.log("Sanity check!");
 
 // Get Stripe publishable key
 fetch("/subscriptions/config/")
-.then(res => res.text())          // convert to plain text
-.then(text => console.log(text))  // then log it out
 .then((result) => { return result.json(); })
 .then((data) => {
   // Initialize Stripe.js
@@ -15,7 +13,7 @@ fetch("/subscriptions/config/")
   if (submitBtn !== null) {
     submitBtn.addEventListener("click", () => {
     // Get Checkout Session ID
-    fetch("/create-checkout-session/")
+    fetch("/subscriptions/create-checkout-session/")
       .then((result) => { return result.json(); })
       .then((data) => {
         console.log(data);

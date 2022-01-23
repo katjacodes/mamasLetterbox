@@ -11,12 +11,12 @@ def index(request):
     return render(request, 'home/index.html')
 
 
-def searchpenpals(request):
+def searchprofiles(request):
     profiles = Item.objects.all()
     context = {
         'profiles': profiles
     }
-    return render(request, 'home/searchpenpals.html', context)
+    return render(request, 'home/searchprofiles.html', context)
 
 
 def profile(request):
