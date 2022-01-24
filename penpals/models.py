@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 from django_countries.fields import CountryField
 
@@ -44,6 +45,7 @@ class PenpalProfile(models.Model):
         null=True,
     )
 
+    username = models.OneToOneField(User, on_delete=models.CASCADE, default = "Your name")
     name = models.CharField(max_length=50, null=False, blank=False, default="Your name")
     pronoun = models.CharField(max_length=50, null=False, blank=False, default="Your preferred pronoun/s)")
     age = models.IntegerField(null=False, blank=False, default="Your age")

@@ -21,7 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('home.urls')),
-    path('penpals/', include('penpals.urls')),
-    # path('home/', include('home.urls')),
-    path('subscriptions/', include('subscriptions.urls')),
+    path('', include('penpals.urls')),
+    path('', include('subscriptions.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

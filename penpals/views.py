@@ -23,7 +23,7 @@ def penpal(request):
 
 
 def add_penpal(request):
-    profiles = PenpalProfile.objects.all().filter(name="Katja")
+    penpals = PenpalProfile.objects.all().filter(name="Katja")
     context = {
         'penpals': penpals
     }
@@ -35,7 +35,7 @@ def add_penpal(request):
             return redirect('penapals/penpal.html', context)
             
     else:
-        info = ItemForm()
+        info = PenpalForm()
         
     return render(request, 'penpals/add_penpal.html', {'form':info})
 
