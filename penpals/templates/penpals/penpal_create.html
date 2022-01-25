@@ -18,7 +18,7 @@
                         Add Your Profile
                     </h1>
                 </div>
-                <form id="profile" class="profile" method="POST" action="add_profile/">
+                <form id="profile" class="profile" method="POST">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Add Profile</button>

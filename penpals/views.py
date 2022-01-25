@@ -1,44 +1,61 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 from .models import PenpalProfile
 from .forms import PenpalForm
 
 
-# Create your views here.
-def searchpenpals(request):
+# CRUD Functionality: Create Read Update Delete
+# Create
+# Read: List view, Detail view
+# Update:
+# Delete
+
+
+@login_required
+def penpal_list(request):
     penpals = PenpalProfile.objects.all()
-    context = {
-        'penpals': penpals
-    }
-    return render(request, 'penpals/searchpenpals.html', context)
+    context = {'penpals': penpals}
+    return render(request, 'penpals/penpal_list.html', context)
 
 
-def penpal(request):
-    penpals = PenpalProfile.objects.all().filter(name="Katja")
-    context = {
-        'penpals': penpals
-    }
-
-    return render(request, 'penpals/penpal.html', context)
+@login_required
+def my_penpal_profile(request):
+    context = {'penpal': request.user.penpal}
+    return render(request, 'penpals/penpal_detail.html', context)
 
 
-def add_penpal(request):
-    penpals = PenpalProfile.objects.all().filter(name="Katja")
-    context = {
-        'penpals': penpals
-    }
-
+@login_required
+def my_penpal_profile_edit(request):
+    penpal = request.user.penpal
     if request.method == 'POST':
-        info = PenpalForm(request.POST)
-        if info.is_valid():
-            info.save()
-            return redirect('penapals/penpal.html', context)
-            
+        form = PenpalForm(request.POST, instance=penpal)
+        if form.is_valid():
+            form.save()
+            return redirect('penpal_me')
     else:
-        info = PenpalForm()
-        
-    return render(request, 'penpals/add_penpal.html', {'form':info})
+        form = PenpalForm(instance=penpal)
+    context = {'form': form}
+    return render(request, 'penpals/penpal_edit.html', context)
 
 
-def edit_penpal(request):
-    return render(request, 'penpals/edit_penpal.html')
+@login_required
+def penpal_detail(request, penpal_id):
+    penpals = get_object_or_404(Penpal, id=penpal_id)
+    context = {'penpal': penpal}
+    return render(request, 'penpals/penpal_detail.html', context)
+
+
+@login_required
+def penpal_create(request):
+    if request.method == 'POST':
+        form = PenpalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('penpal_list')
+    else:
+        form = PenpalForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'penpals/penpal_create.html', {'form': form})
