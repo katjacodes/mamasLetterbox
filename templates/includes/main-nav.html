@@ -3,41 +3,29 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav w-auto mx-auto">
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="/" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="/" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Home
             </a>
         </li>
 
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="clothing-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'about' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 About
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="clothing-link">
-                <a href="" class="dropdown-item">Who We Are</a>
-                <a href="" class="dropdown-item">Who You Are</a>
-                <a href="" class="dropdown-item">How It Works</a>
-                <a href="" class="dropdown-item">FAQ</a>
-            </div>
         </li>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="/add_profile/" id="profile-creation-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Add Your Profile
-            </a>
-        </li>
+        {% if request.user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'penpal_me' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    My Profile
+                </a>
+            </li>
 
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-penpals-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Find a Penpal!
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="all-penpals-link">
-                <a href="" class="dropdown-item">By Age</a>
-                <a href="" class="dropdown-item ">By Language</a>
-                <a href="" class="dropdown-item ">By Country</a>
-                <a href="" class="dropdown-item ">By Hobby</a>
-                <a href="" class="dropdown-item ">By Children's Age</a>
-                <a href="" class="dropdown-item">All Penpals</a>
-            </div>
-        </li>
+            <li class="nav-item dropdown">
+                <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'penpal_list' %}"" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Find a Penpal!
+                </a>
+            </li>
+        {% endif %}
     </ul>
 </div>

@@ -9,4 +9,3 @@ from .models import PenpalProfile
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         PenpalProfile.objects.create(user=instance)
-
