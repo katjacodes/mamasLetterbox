@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 from subscriptions.models import StripeCustomer
@@ -30,6 +30,7 @@ def home(request):
         })
 
     except StripeCustomer.DoesNotExist:
+        print('Nah, that didn\'t work')
         return render(request, 'subscriptions/home.html')
 
 
@@ -43,7 +44,7 @@ def stripe_config(request):
 @csrf_exempt
 def create_checkout_session(request):
     if request.method == 'GET':
-        domain_url = 'http://localhost:8000/'
+        domain_url = 'https://8000-apricot-clownfish-liem57lb.ws-eu28.gitpod.io/'
         stripe.api_key = settings.STRIPE_SECRET_KEY
         try:
             checkout_session = stripe.checkout.Session.create(
@@ -113,3 +114,16 @@ def stripe_webhook(request):
 
     print('Success!')
     return HttpResponse(status=200)
+
+
+
+def customer_portal(request):
+    # Authenticate your user.
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    session = stripe.billing_portal.Session.create(
+        customer='{{CUSTOMER_ID}}',
+        return_url='https://8000-apricot-clownfish-liem57lb.ws-eu28.gitpod.io/',
+    )
+    return redirect(session.url)
+    

@@ -22,7 +22,7 @@
                     </h1>
                 </div>
                 <div class="container mt-5">
-                    {% if subscription.status == "active" %}
+                    {% if user.subscription.status == "active" %}
                       <h4>Your subscription:</h4>
                       <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -30,7 +30,7 @@
                           <p class="card-text">
                             {{ product.description }}
                           </p>
-                          <form method="POST" action="/create-customer-portal-session">
+                          <form method="POST" action="/create-customer-portal-session/">
                             <button type="submit">Manage Billing</button>
                           </form>
                         </div>
