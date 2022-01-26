@@ -39,7 +39,7 @@ class PenpalProfile(models.Model):
     childAge3 = models.IntegerField(blank=True, null=True, help_text="Third child's age (optional)")
     childAge4 = models.IntegerField(blank=True, null=True, help_text="Fourth child's age (optional)")
     childAge5 = models.IntegerField(blank=True, null=True, help_text="Fifth child's age (optional)")
-    email = models.EmailField(max_length=50, null=False, blank=False,  default="Your email address")
+    email = models.EmailField(max_length=50, null=False, blank=False, default="Your email address")
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name='penpal')
 

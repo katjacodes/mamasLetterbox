@@ -13,56 +13,63 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="justify-content-center lookingforpenpalswrapper">
-                <div class="profilewrapper">
-                    <h1 class="display-4 logo-font text-black profile">
-                        {{ penpal.name }}
-                    </h1>
-                </div>
-                <table table table-striped>
-                    <tr id="profile" class="profile">
-                        <td class="profileinfo">Name: {{ penpal.name }}</td>
+<div class="container h-100 w-100">
+    <div class="outerframe">
+        <div class="frame">
+            <div class="textcenter">
+                <h1 class="display-4 logo-font text-black center">
+                    {{ penpal.name }}
+                </h1>
+            </div>  
+            <table class="penpaltable center">
+                <tbody>
+                    </tr class="penpalrow">
+                        <td class="penpalinfo">Pronouns: </td>
+                        <td class="penpalinfo">{{ penpal.pronoun }}</td>
                     </tr>
                     <tr>
-                        <td class="profileinfo">Age: {{ penpal.age }} </td>
+                        <td class="penpalinfo">Age:</td>
+                        <td class="penpalinfo">{{ penpal.age }} </td>
                     </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Country:</td>
+                        <td class="penpalinfo">{{ penpal.country }} </td>
                     </tr>
-                        <td class="profileinfo">Pronouns: {{ penpal.pronoun }} </td>
+                    <tr class="penpalrow">
+                        <td cclass="penpalinfo">Hobby:</td>
+                        <td cclass="penpalinfo">{{ penpal.hobby1 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Age: {{ penpal.age }} </td>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Hobby 2:</td>
+                        <td class="penpalinfo">{{ penpal.hobby2 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Country: {{ penpal.country }} </td>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Hobby 3:</td>
+                        <td class="penpalinfo">{{ penpal.hobby3 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Hobby: {{ penpal.hobby1 }} </td>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child:</td>
+                        <td class="penpalinfo">{{ penpal.childAge1 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Hobby 2: {{ penpal.hobby2 }} </td>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child 2:</td>
+                        <td class="penpalinfo">{{ penpal.childAge2 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Hobby 3: {{ penpal.hobby3 }} </td>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child 3:</td>
+                        <td class="penpalinfo">{{ penpal.childAge3 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Age Child: {{ penpal.childAge1 }} </td>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child 4:</td>
+                        <td class="penpalinfo">{{ penpal.childAge4 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Age Child 2: {{ penpal.childAge2 }} </td>
+                    <tr >
+                        <td class="penpalinfo">Age Child 5:</td>
+                        <td class="penpalinfo">{{ penpal.childAge5 }} </td>
                     </tr>
-                    <tr>
-                        <td class="profileinfo">Age Child 3: {{ penpal.childAge3 }} </td>
-                    </tr>
-                    <tr>
-                        <td class="profileinfo">Age Child 4: {{ penpal.childAge4 }} </td>
-                    </tr>
-                    <tr>
-                        <td class="profileinfo">Age Child 5: {{ penpal.childAge5 }} </td>
-                    </tr>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 {% endblock %}

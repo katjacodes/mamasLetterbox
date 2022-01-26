@@ -22,11 +22,11 @@
                     </h1>
                 </div>
                 <table id="penpals">
-                    {% for profile in profiles %}
+                    {% for penpal in penpals %}
                         <tr>
-                            <td class="profilename">{{profile.name}}</td>
-                            <td class="profileinfo">{{profile.age}}</td>
-                            <td class="profileinfo">{{profile.country}}</td>
+                            <td class="profilename">{{penpal.name}}</td>
+                            <td class="profileinfo">{{penpal.age}}</td>
+                            <td class="profileinfo">{{penpal.country}}</td>
                         </tr>
                     {% endfor %}
                 </table>
