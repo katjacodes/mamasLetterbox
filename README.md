@@ -39,7 +39,6 @@ Client Stories and the status of the features in response to those stories can b
 ### Wireframe Mockups: 
 - [Landing Page](#)
 - [About Page](#)
-- [Registration Page](#)
 - [Login Page](#)
 - [Profile Page](#)
 - [Profile Editing Page](#)
