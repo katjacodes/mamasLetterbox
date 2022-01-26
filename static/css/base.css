@@ -13,6 +13,11 @@ body {
     font-family: 'Lato';
 }
 
+.frame {
+  padding-bottom: 20px !important;
+  padding-top: 50px !important;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -30,9 +35,9 @@ body {
     width: fit-content;
 }
 
-.shop-now-button {
-    background: black;
-    color: white;
+.start-here-button {
+    background: rgb(213, 6, 71);;
+    color: black;
     min-width: 260px;
 }
 
@@ -47,9 +52,9 @@ body {
     border: 1px solid black;
 }
 
-.shop-now-button:hover,
-.shop-now-button:active,
-.shop-now-button:focus,
+.start-here-button:hover,
+.start-here-button:active,
+.start-here-button:focus,
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
@@ -79,6 +84,40 @@ body {
 	z-index: -1;
 }
 
+/* -------------------------------- LANDING PAGE -------------------------------- */
+
+.indexwrapper {
+  padding: .8rem;
+  margin: 25px 20px 25px 20px;
+  background-color: rgba(214, 173, 184, 0.8);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+/* -------------------------------- ABOUT PAGE -------------------------------- */
+
+.aboutwrapper {
+    padding: .8rem;
+    margin: 25px 2vw 25px 2vw;
+    background-color: rgba(214, 173, 184, 0.8);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.aboutheading {
+  color: rgb(213, 6, 71) !important;
+  font-weight: 800 !important;
+}
+
+.aboutparagraph {
+  color: black !important;
+  font-weight: 600 !important;
+}
+
 /* -------------------------------- PENPAL LISTINGS & PROFILE PAGES -------------------------------- */
 
 .profilename {
@@ -96,7 +135,7 @@ body {
     font-size: 20px;
 }
 
-.lookingforpenpals, .profile {
+.lookingforpenpals {
     padding: .8rem;
     background-color: rgba(214, 173, 184, 0.6);
     border-radius: 25px;
@@ -128,16 +167,12 @@ body {
   
   #penpals tr:hover {background-color: rgba(222, 178, 139, .8);}
 
-  #profile {
+  .profile {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
     margin-top: 2rem;
   }
-
-  #profile li {
-    list-style-type: none;
-}
 
 /* -------------------------------- SUBSCRIPTIONS PAGE -------------------------------- */
 
@@ -231,20 +266,26 @@ body {
     .container {
       max-width: 80%;
     }
-  }
+}
   
-  /* fixed top navbar only on medium and up */
-  @media (min-width: 992px) {
-      .fixed-top-desktop-only {
-          position: fixed;
-          top: 0;
-          right: 0;
-          left: 0;
-          z-index: 1030;
-      }
-  
-      .header-container {
-          padding-top: 164px;
-      }
+/* fixed top navbar only on medium and up */
+@media (min-width: 992px) {
+    .header-container {
+      padding-top: 164px;
+    }
+}
+
+
+/* increased margin to prevent text from overlapping with navbar on smaller screens */
+@media (max-width: 1200px) {
+  .outerframe {
+    padding-top: 150px !important;
   }
- 
+}
+
+/* positions the text on the index page further down on smaller screens */
+@media (max-width: 992px) {
+  .small-index{
+    margin-top: 8rem !important;
+  }
+}
