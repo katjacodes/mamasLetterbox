@@ -131,6 +131,7 @@ label {
 }
 
 /* -------------------------------- ALLAUTH -------------------------------- */
+/* credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/static/css/base.css and edited to fit project needs */
 
 .authwrapper {
   padding: .8rem;
@@ -302,8 +303,18 @@ div#div_id_remember.form-check {
   }
 
 /* -------------------------------- SUBSCRIPTIONS PAGE -------------------------------- */
+/* credit: code taken from https://codepen.io/bronsrobin/full/AmOyRR and edited to fit project needs */
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+.subscriptionwrapper {
+  padding: .8rem;
+  background-color: rgba(214, 173, 184, 0.8);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+}
 
 .event {
   width: 300px;
@@ -382,6 +393,18 @@ div#div_id_remember.form-check {
   color: #E35354;
   text-align: center;
   font-weight: 700;
+}
+
+.subscribebutton {
+  background-color:  rgb(213, 6, 71) !important;
+  color: black;
+  font-weight: 600;
+  font-size: 21px;
+  padding: 10px;
+  border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 

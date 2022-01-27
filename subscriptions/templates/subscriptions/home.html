@@ -1,6 +1,5 @@
 <!--- credit: code taken from https://testdriven.io/blog/django-stripe-subscriptions/ and edited to fit project needs -->
 
-
 {% extends "base.html" %}
 {% load static %}
 
@@ -13,45 +12,47 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="justify-content-center lookingforpenpalswrapper">
-                <div class="profilewrapper">
-                    <h1 class="display-4 logo-font text-black profile">
-                        Monthly Subscription  
-                    </h1>
-                </div>
-                <div class="container mt-5">
-                  
+<div class="container h-100 justify-content-center ">
+    <div class="justify-content-center outerframe">
+        <div class="frame">
+            <div class="subscriptionwrapper mall-index col-12 col-sm-4 col-md-6 col-lg-4 my-aut">
+              <h1 class="display-4 logo-font text-black profile">
+                Monthly Subscription  
+              </h1>
+              <div class="container mt-5">
                   <div class="event">
-                    <span>#001</span>
-                    <div class="info">
-                      MAY 24, 2013 <br />
-                      John Doe
-                    </div>
-                    <div class="price">
-                      $650
-                    </div>
-                  </div>
-
-                    {% if subscription.status == "active" %}
-                      <h4>Your subscription:</h4>
-                      <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                          <h5 class="card-title">{{ product.name }}</h5>
-                          <p class="card-text">
-                            {{ product.description }}
-                          </p>
-                          <form method="POST" action="/create-customer-portal-session/">
-                            <button type="submit">Manage Billing</button>
-                          </form>
-                        </div>
+                      <span><i class="fas fa-heart" style="color:red;"></i></span>
+                      <div class="info">
+                          MONTHLY MEMBERSHIP <br />
+                          Try Us Out!
                       </div>
-                    {% else %}
-                      <button type="submit" class="btn btn-primary" id="submitBtn">Subscribe</button>
-                    {% endif %}
+                      <div class="price">
+                          only $0.50
+                      </div>
+                  </div>
                 </div>
+
+              {% if subscription.status == "active" %}
+                <h4>Your subscription:</h4>
+                <div class="card" style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">
+                      {{ product.description }}
+                    </p>
+                    <form method="POST" action="/create-customer-portal-session/">
+                      <button type="submit">Manage Billing</button>
+                    </form>
+                  </div>
+                </div>
+              {% else %}
+                <div class="text-center">
+                  <button class="subscribebutton" type="submit">Subscribe</button>
+                </div>
+              {% endif %}
+
             </div>
-        </div>
+        </div>  
     </div>
+</div>
 {% endblock %}
