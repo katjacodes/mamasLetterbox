@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 
 from .models import PenpalProfile
 from .forms import PenpalForm
@@ -21,13 +22,19 @@ def penpal_list(request):
 
 @login_required
 def my_penpal_profile(request):
-    context = {'penpal': request.user.penpal}
-    return render(request, 'penpals/penpal_detail.html', context)
+    if hasattr(request.user, 'penpal'):
+        context = {'penpal': request.user.penpal}
+        return render(request, 'penpals/penpal_detail.html', context)
+    else:
+        return redirect(reverse('penpal_me_edit'))
 
 
 @login_required
 def my_penpal_profile_edit(request):
-    penpal = request.user.penpal
+    if hasattr(request.user, 'penpal'):
+        penpal = request.user.penpal
+    else:
+        penpal = PenpalProfile(user=request.user)
     if request.method == 'POST':
         form = PenpalForm(request.POST, instance=penpal)
         if form.is_valid():

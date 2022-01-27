@@ -7,4 +7,6 @@ from .models import PenpalProfile
 class PenpalForm(forms.ModelForm):
     class Meta:
         model = PenpalProfile
-        fields = '__all__'
+        exclude = [
+            'user'
+        ]
