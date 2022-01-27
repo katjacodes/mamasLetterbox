@@ -1,5 +1,5 @@
 /* -------------------------------- GENERAL -------------------------------- */
-/* credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/e3ce173e7475dd8e9c7f51a3af3eaa888c29cb79/static/css/base.css and edited to fit project needs */
+/* credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/static/css/base.css and edited to fit project needs */
 
 html {
     height: 100%;
@@ -110,25 +110,87 @@ table.center {
     background-color: rgba(213, 6, 71, 0.9);
 }
 
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: white;
-	z-index: -1;
-}
-
 /* -------------------------------- LANDING PAGE -------------------------------- */
 
 .indexwrapper {
+  padding: .8rem;
+  margin: 25px 20px 25px 20px;
+  background-color: rgba(214, 173, 184, 0.8);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+/* -------------------------------- ALLAUTH -------------------------------- */
+
+.authwrapper {
   padding: .8rem;
   background-color: rgba(214, 173, 184, 0.8);
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+.allauth-form-inner-content p {
+  margin-top: 1.5rem; /* mt-4 */
+  color: black; /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+  border-color: #000;
+  border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+  display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+  color: #aab7c4;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+/* btn */
+display: inline-block;
+  font-weight: 400;
+  color: black;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: rgb(213, 6, 71);
+  border: 1px solid #000;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+
+  /* standard bootstrap btn transitions */
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {	
+color: #fff;
+  background-color: #222;
+  border-color: #222;
+}
+
+.allauth-form-inner-content a {
+color: black; /* text-info */
+font-weight: 600;
+}
+
+div#div_id_remember.form-check {
+  color: black !important;
 }
 
 /* -------------------------------- ABOUT PAGE -------------------------------- */

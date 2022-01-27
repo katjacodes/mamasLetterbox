@@ -20,10 +20,6 @@ def home(request):
         subscription = stripe.Subscription.retrieve(stripe_customer.stripeSubscriptionId)
         product = stripe.Product.retrieve(subscription.plan.product)
 
-        # Feel free to fetch any additional data from 'subscription' or 'product'
-        # https://stripe.com/docs/api/subscriptions/object
-        # https://stripe.com/docs/api/products/object
-
         return render(request, 'home.html', {
             'subscription': subscription,
             'product': product,
@@ -126,4 +122,3 @@ def customer_portal(request):
         return_url='https://8000-apricot-clownfish-liem57lb.ws-eu28.gitpod.io/',
     )
     return redirect(session.url)
-    
