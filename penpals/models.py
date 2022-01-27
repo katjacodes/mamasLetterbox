@@ -4,8 +4,6 @@ from django_countries.fields import CountryField
 
 from .choices import Language
 
-# Create your models here.
-
 """
 A penpal profile model for maintainining
 searchable information to match penpals
