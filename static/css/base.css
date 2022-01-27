@@ -54,6 +54,14 @@ table.center {
   margin-right:auto;
 }
 
+label.requiredField {
+  color: black !important;
+}
+
+label {
+  color: black !important;
+}
+
 /* from Bulma */
 .icon {
     align-items: center;
@@ -214,11 +222,23 @@ div#div_id_remember.form-check {
   font-weight: 600 !important;
 }
 
-/* -------------------------------- PENPAL PROFILE -------------------------------- */
+/* -------------------------------- PENPAL PROFILE & EDIT PROFILE -------------------------------- */
 
 .textcenter {
   text-align: center;
   background-color: rgba(214, 173, 184, 0.8);
+  border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.profilebutton {
+  background-color:  rgb(213, 6, 71) !important;
+  color: black;
+  font-weight: 600;
+  font-size: 21px;
+  padding: 15px;
   border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
