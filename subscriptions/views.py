@@ -3,8 +3,13 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http.response import JsonResponse, HttpResponse
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_safe, require_POST
+from django.urls import reverse
+from django.utils import timezone
+from datetime import timedelta
 
 from subscriptions.models import StripeCustomer
 
@@ -30,35 +35,31 @@ def home(request):
         return render(request, 'subscriptions/home.html')
 
 
-@csrf_exempt
+@require_safe
 def stripe_config(request):
-    if request.method == 'GET':
-        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
-        return JsonResponse(stripe_config, safe=False)
+    stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+    return JsonResponse(stripe_config, safe=False)
 
 
-@csrf_exempt
+@require_safe
 def create_checkout_session(request):
-    if request.method == 'GET':
-        domain_url = 'https://8000-apricot-clownfish-liem57lb.ws-eu28.gitpod.io/'
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        try:
-            checkout_session = stripe.checkout.Session.create(
-                client_reference_id=request.user.id if request.user.is_authenticated else None,
-                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
-                cancel_url=domain_url + 'cancel/',
-                payment_method_types=['card'],
-                mode='subscription',
-                line_items=[
-                    {
-                        'price': settings.STRIPE_PRICE_ID,
-                        'quantity': 1,
-                    }
-                ]
-            )
-            return JsonResponse({'sessionId': checkout_session['id']})
-        except Exception as e:
-            return JsonResponse({'error': str(e)})
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    checkout_session = stripe.checkout.Session.create(
+        client_reference_id=request.user.id if request.user.is_authenticated else None,
+        success_url=request.build_absolute_uri(reverse('subscriptions-success')) + '?session_id={CHECKOUT_SESSION_ID}',
+        cancel_url=request.build_absolute_uri(reverse('subscriptions-cancel')),
+        payment_method_types=['card'],
+        mode='subscription',
+        line_items=[
+            {
+                'price': settings.STRIPE_PRICE_ID,
+                'quantity': 1,
+            }
+        ]
+    )
+        
+        # return JsonResponse({'sessionId': checkout_session['id']})
+    return redirect(checkout_session.url)
 
 
 @login_required
@@ -72,23 +73,28 @@ def cancel(request):
 
 
 @csrf_exempt
+@require_POST
 def stripe_webhook(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     endpoint_secret = settings.STRIPE_ENDPOINT_SECRET
     payload = request.body
-    sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     event = None
+
+    if not sig_header:
+        return HttpResponseBadRequest("Signature missing")
 
     try:
         event = stripe.Webhook.construct_event(
             payload, sig_header, endpoint_secret
         )
     except ValueError as e:
-        # Invalid payload
-        return HttpResponse(status=400)
-    except stripe.error.SignatureVerificationError as e:
-        # Invalid signature
-        return HttpResponse(status=400)
+        return HttpResponseBadRequest("Invalid payload")
+    except stripe.error.SignatureVerificationError:
+        return HttpResponseBadRequest("Invalid signature")
+
+    # if event['type']  in ['checkout.session.completed', 'invoice.paid', 'invoice.payment_failed']:
+    #    print("Event data", event)
 
     # Handle the checkout.session.completed event
     if event['type'] == 'checkout.session.completed':
@@ -105,11 +111,11 @@ def stripe_webhook(request):
             user=user,
             stripeCustomerId=stripe_customer_id,
             stripeSubscriptionId=stripe_subscription_id,
+            validUntil=timezone.now() + timedelta(days=30)
         )
         print(user.username + ' just subscribed.')
 
-    print('Success!')
-    return HttpResponse(status=200)
+    return JsonResponse({'status': 'success'})
 
 
 
@@ -119,6 +125,6 @@ def customer_portal(request):
 
     session = stripe.billing_portal.Session.create(
         customer='{{CUSTOMER_ID}}',
-        return_url='https://8000-apricot-clownfish-liem57lb.ws-eu28.gitpod.io/',
+        return_url=request.build_absolute_uri(''),
     )
     return redirect(session.url)

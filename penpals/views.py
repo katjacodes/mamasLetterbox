@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from .models import PenpalProfile
 from .forms import PenpalForm
+from subscriptions.decorators import subscription_required
 
 
 # CRUD Functionality: Create Read Update Delete
@@ -13,7 +14,7 @@ from .forms import PenpalForm
 # Delete
 
 
-@login_required
+@subscription_required
 def penpal_list(request):
     penpals = PenpalProfile.objects.all()
     context = {'penpals': penpals}
