@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'mamasLetterbox.middleware.FixForwardedHostMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -178,5 +179,5 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51KKMAhDOx8yDZB7retZqFlzZDGgWkWeguhfiEJfp9bujEYpC7kjZ3oAxoc6s62FCkGNz0YpjXIy948Nk7INJJeNB00ngWEdSkV'
 STRIPE_SECRET_KEY = 'sk_test_51KKMAhDOx8yDZB7rPOjGTHIbN1BFyQqCYAKDpmvtm3JPtRV9yCL6iwGS2ZLUsD33bew4bSRR2LQ7b0VNk343VKWb00FB1TtDgg'
-STRIPE_PRICE_ID = 'price_1KKMHKDOx8yDZB7rdAHRPqDy'
+STRIPE_PRICE_ID = 'price_1KMxWyDOx8yDZB7ruta2EfFX'
 STRIPE_ENDPOINT_SECRET = 'whsec_DA6i4jwptoSYij6peUkpDbt3Je8lpERW'
