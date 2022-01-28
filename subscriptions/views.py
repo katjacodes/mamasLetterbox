@@ -41,11 +41,12 @@ def stripe_config(request):
     return JsonResponse(stripe_config, safe=False)
 
 
+@login_required
 @require_safe
 def create_checkout_session(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
     checkout_session = stripe.checkout.Session.create(
-        client_reference_id=request.user.id if request.user.is_authenticated else None,
+        client_reference_id=request.user.id,
         success_url=request.build_absolute_uri(reverse('subscriptions-success')) + '?session_id={CHECKOUT_SESSION_ID}',
         cancel_url=request.build_absolute_uri(reverse('subscriptions-cancel')),
         payment_method_types=['card'],
