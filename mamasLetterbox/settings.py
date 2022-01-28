@@ -26,7 +26,12 @@ SECRET_KEY = 'django-insecure-tiph1-knz9m&1@s&y*&85dm34jdke^^x+uj!e78i5(*i(9orak
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mamas-letterbox.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
+
+# Mandatory if Django runs behind a reverse proxy (e.g. GitPod)
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_PORT = True
 
 
 # Application definition
