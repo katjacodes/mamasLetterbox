@@ -2,6 +2,7 @@ from functools import wraps
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 from .models import StripeCustomer
 
