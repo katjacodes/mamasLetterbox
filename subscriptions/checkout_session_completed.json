@@ -1,0 +1,73 @@
+{
+    "api_version": "2020-08-27",
+    "created": 1643369742,
+    "data": {
+      "object": {
+        "after_expiration": null,
+        "allow_promotion_codes": null,
+        "amount_subtotal": 500,
+        "amount_total": 500,
+        "automatic_tax": {
+          "enabled": false,
+          "status": null
+        },
+        "billing_address_collection": null,
+        "cancel_url": "https://8000-apricot-clownfish-liem57lb.ws-eu29.gitpod.io:443/subscriptions/cancel/",
+        "client_reference_id": "1",
+        "consent": null,
+        "consent_collection": null,
+        "currency": "usd",
+        "customer": "cus_L2yhxsB92gLn8M",
+        "customer_creation": "always",
+        "customer_details": {
+          "email": "katjacodes@gmail.com",
+          "phone": null,
+          "tax_exempt": "none",
+          "tax_ids": []
+        },
+        "customer_email": null,
+        "expires_at": 1643456054,
+        "id": "cs_test_a1VVk1dgVklnYBY2Qw70kkYuvNgLmxNDFcHEyfzks2mQj2Zqv7eXzsVAk2",
+        "livemode": false,
+        "locale": null,
+        "metadata": {},
+        "mode": "subscription",
+        "object": "checkout.session",
+        "payment_intent": null,
+        "payment_link": null,
+        "payment_method_options": {},
+        "payment_method_types": [
+          "card"
+        ],
+        "payment_status": "paid",
+        "phone_number_collection": {
+          "enabled": false
+        },
+        "recovered_from": null,
+        "setup_intent": null,
+        "shipping": null,
+        "shipping_address_collection": null,
+        "shipping_options": [],
+        "shipping_rate": null,
+        "status": "complete",
+        "submit_type": null,
+        "subscription": "sub_1KMsjwDOx8yDZB7rmQ3l933F",
+        "success_url": "https://8000-apricot-clownfish-liem57lb.ws-eu29.gitpod.io:443/subscriptions/success/?session_id={CHECKOUT_SESSION_ID}",
+        "total_details": {
+          "amount_discount": 0,
+          "amount_shipping": 0,
+          "amount_tax": 0
+        },
+        "url": null
+      }
+    },
+    "id": "evt_1KMsjzDOx8yDZB7rF1nsDLvY",
+    "livemode": false,
+    "object": "event",
+    "pending_webhooks": 1,
+    "request": {
+      "id": "req_1lWz3JxBsZzzjp",
+      "idempotency_key": "362822aa-a76c-4537-88a3-b47a09bb8c55"
+    },
+    "type": "checkout.session.completed"
+  }
