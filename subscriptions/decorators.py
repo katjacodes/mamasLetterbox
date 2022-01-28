@@ -4,10 +4,8 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from .models import StripeCustomer
-
-def is_user_subscribed(user):
-    return StripeCustomer.objects.filter(user=user, validUntil__lte=timezone.now()).exists()
+from .models import Subscription
+from  .helpers import is_user_subscribed
 
 
 def subscription_required(func):

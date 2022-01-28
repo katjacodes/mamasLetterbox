@@ -8,10 +8,11 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_safe, require_POST
 from django.urls import reverse
-from django.utils import timezone
-from datetime import timedelta
+from datetime import datetime
+from django.utils.timezone import utc
 
-from subscriptions.models import StripeCustomer
+from subscriptions.models import StripeCustomer, Subscription
+from .helpers import get_active_subscription
 
 # Create your views here.
 
@@ -20,13 +21,18 @@ from subscriptions.models import StripeCustomer
 def home(request):
     try:
         # Retrieve the subscription & product
-        stripe_customer = StripeCustomer.objects.get(user=request.user)
-        stripe.api_key = settings.STRIPE_SECRET_KEY
-        subscription = stripe.Subscription.retrieve(stripe_customer.stripeSubscriptionId)
-        product = stripe.Product.retrieve(subscription.plan.product)
+        subscription = get_active_subscription(request.user)
 
-        return render(request, 'home.html', {
-            'subscription': subscription,
+        if subscription:
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            stripe_subscription = stripe.Subscription.retrieve(subscription.stripeSubscriptionId)
+            product = stripe.Product.retrieve(stripe_subscription.plan.product)
+        else:
+            stripe_subscription = None
+            product = None
+
+        return render(request, 'subscriptions/home.html', {
+            'subscription': stripe_subscription,
             'product': product,
         })
 
@@ -104,20 +110,40 @@ def stripe_webhook(request):
         # Fetch all the required data from session
         client_reference_id = session.get('client_reference_id')
         stripe_customer_id = session.get('customer')
-        stripe_subscription_id = session.get('subscription')
-
+        
         # Get the user and create a new StripeCustomer
         user = User.objects.get(id=client_reference_id)
-        StripeCustomer.objects.create(
+        _, created = StripeCustomer.objects.update_or_create(
             user=user,
-            stripeCustomerId=stripe_customer_id,
+            defaults={
+                'stripeCustomerId': stripe_customer_id,
+            }
+        )
+        if created:
+            print(user.username, 'associated with stripe id', stripe_customer_id)
+
+    if event['type'] == 'invoice.paid':
+        session = event['data']['object']
+
+        # Fetch all the required data from session
+        stripe_customer_id = session.get('customer')
+        stripe_subscription_id = session.get('subscription')
+        subscription_end = session["lines"]["data"][0]['period']['end']
+
+        stripe_customer = StripeCustomer.objects.filter(stripeCustomerId=stripe_customer_id).select_related('user').first()
+        if not stripe_customer:
+            return HttpResponseBadRequest("Unknown stripe customer id")
+        user = stripe_customer.user
+
+        # Get the user and create a new StripeCustomer
+        Subscription.objects.create(
+            user=user,
             stripeSubscriptionId=stripe_subscription_id,
-            validUntil=timezone.now() + timedelta(days=30)
+            validUntil=datetime.fromtimestamp(subscription_end, tz=utc)
         )
         print(user.username + ' just subscribed.')
 
     return JsonResponse({'status': 'success'})
-
 
 
 def customer_portal(request):
