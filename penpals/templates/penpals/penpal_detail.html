@@ -24,6 +24,13 @@
             <table class="penpaltable center">
                 <tbody>
                     </tr class="penpalrow">
+                        <div class="text-center">
+                            <a href="{% url 'penpal_me_edit' %}">
+                                <button class="editbutton">Edit Profile</button>
+                            </a>
+                        </div>
+                    </tr>
+                    </tr class="penpalrow">
                         <td class="penpalinfo">Pronouns: </td>
                         <td class="penpalinfo">{{ penpal.pronoun }}</td>
                     </tr>

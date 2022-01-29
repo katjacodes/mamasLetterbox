@@ -13,19 +13,21 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="justify-content-center lookingforpenpalswrapper">
-                <div class="profilewrapper">
+<div class ="outerframe">
+    <div class ="frame">
+        <div class="subscriptionwrapper">
+            <div class="container h-100">
+                <div class="justify-content-center lookingforpenpalswrapper">
                     <h1 class="display-4 logo-font text-black profile">
                         Subscription Plans  
                     </h1>
-                </div>
-                <div class="container mt-5">
-                    <p>You have successfully subscribed!</p>
-                    <p><a href="{% url 'home' %}">Return to the dashboard</a></p>
+                    <div class="container mt-5">
+                        <p>You have successfully subscribed!</p>
+                        <p><a href="{% url 'home' %}">Return to the dashboard</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
