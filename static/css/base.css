@@ -38,7 +38,6 @@ table {
   line-height: 42px;
   table-layout: fixed;
   width: 50%;
-  border-spacing: 0;
 }
 
 td {
@@ -118,18 +117,6 @@ label {
     background-color: rgba(213, 6, 71, 0.9);
 }
 
-/* -------------------------------- LANDING PAGE -------------------------------- */
-
-.indexwrapper {
-  padding: .8rem;
-  margin: 25px 20px 25px 20px;
-  background-color: rgba(214, 173, 184, 0.8);
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-
 /* -------------------------------- ALLAUTH -------------------------------- */
 /* credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/master/static/css/base.css and edited to fit project needs */
 
@@ -195,11 +182,24 @@ color: #fff;
 
 .allauth-form-inner-content a {
 color: black; /* text-info */
-font-weight: 600;
+font-weight: 800;
+text-decoration: underline;
 }
 
 div#div_id_remember.form-check {
   color: black !important;
+}
+
+/* -------------------------------- LANDING PAGE -------------------------------- */
+
+.indexwrapper {
+  padding: .8rem;
+  margin: 25px 20px 25px 20px;
+  background-color: rgba(214, 173, 184, 0.8);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 /* -------------------------------- ABOUT PAGE -------------------------------- */
@@ -223,6 +223,31 @@ div#div_id_remember.form-check {
   font-weight: 600 !important;
 }
 
+section p a {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: rgb(213, 6, 71) !important;
+}
+
+section p a.visited {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+section p a.visited:active {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: rgb(213, 6, 71) !important;
+}
+
+section p a.active a {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: rgb(213, 6, 71) !important;
+}
+
+
 /* -------------------------------- PENPAL PROFILE & EDIT PROFILE -------------------------------- */
 
 .textcenter {
@@ -240,6 +265,18 @@ div#div_id_remember.form-check {
   font-weight: 600;
   font-size: 21px;
   padding: 15px;
+  border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.editbutton {
+  background-color:  rgb(213, 6, 71) !important;
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px;
   border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -284,6 +321,10 @@ div#div_id_remember.form-check {
     margin-top: 2rem;
   }
   
+table#penpals {
+  border-collapse: separate;
+}
+
   #penpals td {
     border: 1px solid rgba(213, 6, 71, .8);
     padding: 8px;
@@ -297,10 +338,21 @@ div#div_id_remember.form-check {
 
   .profile {
     font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
     width: 100%;
     margin-top: 2rem;
   }
+  
+  .listbutton {
+    background-color:  rgb(214, 173, 184) !important;
+    color: black;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 2px;
+    border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -o-border-radius: 5px;
+}
 
 /* -------------------------------- SUBSCRIPTIONS PAGE -------------------------------- */
 /* credit: code taken from https://codepen.io/bronsrobin/full/AmOyRR and edited to fit project needs */
