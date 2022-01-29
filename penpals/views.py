@@ -27,7 +27,7 @@ def my_penpal_profile(request):
         context = {'penpal': request.user.penpal}
         return render(request, 'penpals/penpal_detail.html', context)
     else:
-        return redirect(reverse('penpal_me_edit'))
+        return redirect(reverse('penpal_create'))
 
 
 @login_required
