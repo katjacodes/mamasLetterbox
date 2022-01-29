@@ -1,4 +1,4 @@
-# Interpreter Invoicing App
+# Mama's Letterbox
 
 <div align="center">
     <img src="#" alt="#"/>
@@ -8,16 +8,16 @@
 [View deployed site here](#)
 
 ## Project Description
-Many people try to reduce the presence of screens in their lives and go back to activities the used to enjoy before screens took over our lives. Writing letters is one of them. Being a parent of a young child during the pandemic has been a challenging and often isolating experience for many parents, especially moms. This website seeks to help parents, especially but not exclusively mothers of young childen to make meaningful connections with other parents around the world through letters.
+Many people try to reduce the presence of screens in their lives and go back to activities they used to enjoy before screens took over our lives. Writing letters is one of them. Being a parent of a young child during the pandemic has been a challenging and often isolating experience for many parents, especially moms. This website seeks to help parents, especially but not exclusively mothers of young childen, to make meaningful connections with other parents around the world through letters.
 
-The current version of the application is an MPV designed to provide basic functionality. In the future, additional functinalily will be implemented to allow a hopefully growing number of users to search the website more effectively and created more appealing profiles.
+The current version of the application is an MVP designed to provide basic functionality. In the future, additional functionalily will be implemented to allow a hopefully growing number of users to search the website more effectively and create more appealing profiles.
 
 Currently, the general goals of the application are:
-* Provide the general public with a sense of the goals of the application
+* Provide visitors with a sense of the goals of the application
 * Provide login, logout, and new user registration functionality
-* Provide plan subscription and cancellation functionality
+* Provide plan subscription functionality
 * Allow registered users to create and update their personal profile
-* Allow registered and subscribed users to view other users' profiles and contact them
+* Allow registered and subscribed users to view other users' profiles and contact them via email
 
 
 ## UX
@@ -34,58 +34,47 @@ Currently, the general goals of the application are:
 * A way to increase the amount of offline acctivities in their lives
 
 #### Client Stories
-Client Stories and the status of the features in response to those stories can be found in this Google Doc[https://docs.google.com/spreadsheets/d/1CRY7aYiLONmYjMFSnk4xuDKDCOrky4-98dOgRmqB0fU/edit?usp=sharing].
+Client Stories and the status of the features in response to those stories can be found in the User Stories Overview[https://docs.google.com/spreadsheets/d/1CRY7aYiLONmYjMFSnk4xuDKDCOrky4-98dOgRmqB0fU/edit?usp=sharing].
 
 ### Wireframe Mockups: 
-- [Landing Page](#)
-- [About Page](#)
-- [Login Page](#)
-- [Profile Page](#)
-- [Profile Editing Page](#)
-- [Subscription Page](#)
-- [Penpals Listing Page](#)
+- [Landing Page](media/mamasLetterboxHOME.png)
+- [About Page](media/mamasLetterboxABOUT.png)
+- [Login Page](media/mamasLetterboxHLOGIN.png)
+- [Profile Page](media/mamasLetterboxPROFILE.png)
+- [Profile Creation Page](media/mamasLetterboxCREATE.png)
+- [Profile Editing Page](media/mamasLetterboxEDIT.png)
+- [Subscription Page](media/mamasLetterboxSUBSCRIPTION.png)
+- [Penpals Listing Page](media/mamasLetterboxLIST.png)
 
 
 ## Features
 #### Across Pages
-Each page features a responsive **navigation bar** with conventional placing of **logo** (top left).
+Every page features a responsive **navigation bar** with conventional placing of **logo** (top left).
 
 Every page features a background appropriate to the theme of writing letters. 
 
+Every pages features an **account icon** in the upper right corner to allow visitors to easily register or login and to allow logged-in users to log out.
+
 #### Registration
-The registration page allows new users to register. The **input fields** for username and password have input **validation** to ensure the new account is properly set up. Users who are already registered can get the login page by clicking either on the navbar item in the upper right corner or by the link proviced below the sign-up field.
+The registration page allows new users to register. The **input fields** for username and password have input **validation** to ensure the new account is properly set up. Users who are already registered can get to the login page by clicking on the **account icon** in the upper right corner.
 
 #### Login
-The login page allows existing users to log in to their account. The **input fields** for username and password have input **validation** to ensure the input matches the requirements for each field. New users can get the registration page by clicking either on the navbar item in the upper right corner or by the link proviced below the login field.
+The login page allows existing users to log in to their account. The **input fields** for username/e-mail address and password have input **validation** to ensure the input matches the requirements for each field. New users can get the registration page by clicking either on the **account icon** in the upper right corner..
 
-#### Add Client Page
-The add client page allows users to add client information to the database. Each entry consists of **four text input fields**:
-- Name of the organization
-- Name of the contact 
-- Position of the contact
-- Email address of the contact
-In addition, the **dropdown menu** at the bottom lets the user select the rate tier of the organization: Institution, Small Non-Profit, Large Non-Profit. All fields are required. Upon completing the form, the user will click the **Submit button** to add the new client to the database.
+#### Landing Page
+The landing page tells visitors in a few simple words what the website is about. The **Start Here button** directs to the About page and thus provides a quick way to learn more.
 
-**NOTE I:** _Once I have tested the application out myself for a bit, I would like to make it available to other language justice practitioners. At that stage, I will add a page where users will be able add rates the same way they are now able to add client information. For this initial prototype, I'm using rates I have added dirctly to MongoDB._
+#### About Page
+The About page tells visitors more about the project, its goals, current fucntionality, and future features.
 
-#### Manage Clients Page
-The manage client page contains a **list of all client organizations in the database**. Upon clicking on the caret, the user can view the full set of client details fore each user. Clicking the carot again, closes the details section. Additionally, the user can delete any entry by clikcing the **Delete button** or edit it by clicking the **Edit button**, which takes the user to the edit client page.
+#### My Profile Page
+This page is visible only to registered users. Newly registered users are directed to the **Create Profile page** to create their personal profile for other users to see. Existing users can see the information they have provided and use the **Edit Profile button** to update their profile.
 
-##### Edit Client Page
-The edit client page allows users to edit existing client information. Each entry consists of **four text input fields**:
-- Name of the organization
-- Name of the contact 
-- Position of the contact
-- Email address of the contact
-In addition, the **dropdown menu** at the bottom lets the user select the rate tier of the organization: Institution, Small Non-Profit, Large Non-Profit. Subsequently, the user can either click the **Submit button** to modify the client data in the database or the **Cancel button** to discard the changes. Upon clicking the Submit button, the user sees the confirmation message "Client Successfully Updated." Upon clicking either button, the user is eventually sent back to the manage clients page.
+##### Find a Penpal! Page
+This page is visible only to subscripers. Users who have not purchased a subscription, are directed to the **Subscription page**. Subscribed users can see a list with the basic data of all registered users: name, age (if entered), and country of residence. By clicking the **View Profile button**, subscribers can see additional profile details and make initial contact with the profile owner if desired.
 
-#### New Invoice Page
-The new invoice page provides a templae for the user to create an invoice based on the client and rate data in the database. Upon selecting the **client organization** from the dropdown menu, the remaining fields (contact, position, and email address) populate automatically. In the next template section, the user manually adds ***event name, date, and time**. In the third and final template section, the user selects a **rate based on the job duration** and a **billable amount** from two dropdown menus. If **consulting** was part of the job, the user gets to select this and the corresponding **billable amount** in from the dropdown menus on the next line. At the bottome of the page, the total amount gets caculated automatically. Finally, the user can click the **Download PDF** button to download his invoice as a pdf document.
-
-#### Profile Page
-The profile page greets the user with his **username**. It is displayed upon login, and the user can get back to it anytime while they are logged in by clicking on the logo in the upper left corner. In addtion to the greeting, the profile page provides a quick overview of the application functionality with hyperlinks to the corresponding pages. 
-
-**NOTE II:** _Before sharing the application with other langauge justice practitioners, I will expand the profile page. Users will be able to additional contact information here and submit it to the database, and the header on the invoice will be drawn directly from there. Additionally, there will be a contact form on this page and copyright information across all pages._
+#### Subscription Page
+The subscription page directs the user to Stripe, where they can purchase a subscription, currently available at the symbolic price of $0.50 to allow new users to test out the site without any risk while additional features are still being developed. This approach will hopefully make more users purchase a subscription and thus make the site more attractive for future users.
 
 ### Existing Features
 - Header Navigation Bar - Exists on [every page](base.html) and allows all users to easily navigate all the website's pages and find what they are looking for quickly, including being led back to their profile page when cklicing on the **logo**. (When clicking on the logo while not logged in, the login page will reload.)
