@@ -85,13 +85,7 @@ Despite creating all the urlpaths, the pages could not be found
 
 #### Solution:
 
-Badond on this [Stackoverflow solution](https://stackoverflow.com/questions/55429392/django-url-pattern-not-being-found), I was able to modify the urlpaths and get them to work.
-
-
-### Toast Appearing for Every Action, on Every Page
-
-
-### My Profile URL Always Directs to Profile Creation Page (```302``` Error)
+Based on on this [Stackoverflow solution](https://stackoverflow.com/questions/55429392/django-url-pattern-not-being-found), I was able to modify the urlpaths and get them to work.
 
 
 ### Unable to Attach Penpal Profile to Authenticated User
@@ -131,3 +125,6 @@ if form.is_valid():
             new_profile.save()
             return redirect('penpal_list')
 ```
+
+
+### Toast Appears for Every Action
