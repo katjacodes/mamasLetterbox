@@ -8,7 +8,8 @@ from .helpers import is_user_subscribed
 
 def subscription_required(func):
     """
-    A decorator to check if a user is subscribed.
+    A decorator to check if a user is subscribed and redirect
+    unsubscribed users to the subscription page.
     Thank you to Benoit Blanchon for his help with this
     approach.
     """
@@ -19,5 +20,5 @@ def subscription_required(func):
         if is_user_subscribed(request.user):
             return func(request, *args, **kwargs)
         else:
-            return redirect(reverse('subscriptions-home'))
+            return redirect(reverse('basicdetails'))
     return inner
