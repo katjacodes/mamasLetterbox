@@ -1,17 +1,21 @@
 from functools import wraps
-from django.utils import timezone
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
-from .models import Subscription
-from  .helpers import is_user_subscribed
+from .helpers import is_user_subscribed
 
 
 def subscription_required(func):
+    """
+    A decorator to check if a user is subscribed.
+    Thank you to Benoit Blanchon for his help with this
+    approach.
+    """
+
     @login_required
     @wraps(func)
-    def inner(request, *args, **kwargs):        
+    def inner(request, *args, **kwargs):
         if is_user_subscribed(request.user):
             return func(request, *args, **kwargs)
         else:

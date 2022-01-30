@@ -283,6 +283,30 @@ section p a.active a {
     -o-border-radius: 5px;
 }
 
+div a.editbutton {
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+div a.editbutton.visited {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+div a.editbutton.visited:active {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+div a.editbutton.active a {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+
 /* -------------------------------- PENPAL LISTINGS -------------------------------- */
 
 .profilename {

@@ -4,34 +4,33 @@ from django_countries.fields import CountryField
 
 from .choices import Language
 
-"""
-A penpal profile model for maintainining
-searchable information to match penpals
-"""
 
 class PenpalProfile(models.Model):
+    """
+    A penpal profile model for maintainining
+    personal information to match penpals
+    """
+
     language1 = models.CharField(
         max_length=10,
         choices=Language.choices,
-        default=Language.ENG,
+        default=Language.ENGLISH,
         null=False,
         blank=False,
     )
     language2 = models.CharField(
         max_length=10,
         choices=Language.choices,
-        default=Language.ENG,
         blank=True,
         null=True,
     )
     language3 = models.CharField(
-        max_length=10, 
-        choices=Language.choices, 
-        default=Language.ENG, 
-        blank=True, 
+        max_length=10,
+        choices=Language.choices,
+        blank=True,
         null=True
     )
-    
+
     name = models.CharField(max_length=50, null=False, blank=False, default="Your name")
     pronoun = models.CharField(max_length=50, null=False, blank=False, default="Your preferred pronoun/s)")
     age = models.IntegerField(blank=True, null=True)
@@ -47,7 +46,6 @@ class PenpalProfile(models.Model):
     email = models.EmailField(max_length=50, null=False, blank=False, default="Your email address")
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name='penpal')
-
 
     def __str__(self):
         return f'{self.name}'

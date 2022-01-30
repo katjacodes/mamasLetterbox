@@ -9,5 +9,4 @@ urlpatterns = [
     path('success/', views.success, name='subscriptions-success'),
     path('cancel/', views.cancel, name='subscriptions-cancel'),
     path('webhook/', views.stripe_webhook),
-    path('create-customer-portal-session/', views.customer_portal)
 ]

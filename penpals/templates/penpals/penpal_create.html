@@ -19,7 +19,7 @@
                     <h1 class="display-4 logo-font text-black d-flex justify-content-center">
                         Create Your Profile
                     </h1>
-                    <div id="profile" class="profile" method="POST">
+                    <form id="profile" class="profile" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
 

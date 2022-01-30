@@ -1,3 +1,7 @@
+"""
+Code taken from Code Institute's Hello Django module and edited to fit project needs.
+"""
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -5,13 +9,6 @@ from django.urls import reverse
 from .models import PenpalProfile
 from .forms import PenpalForm
 from subscriptions.decorators import subscription_required
-
-
-# CRUD Functionality: Create Read Update Delete
-# Create
-# Read: List view, Detail view
-# Update:
-# Delete
 
 
 @subscription_required

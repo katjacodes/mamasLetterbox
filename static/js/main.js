@@ -1,3 +1,5 @@
+/* Code taken from https://testdriven.io/blog/django-stripe-subscriptions/ and edited to fit project needs. */ 
+
 console.log("Sanity check!");
 
 // Get Stripe publishable key
