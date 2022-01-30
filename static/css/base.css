@@ -48,6 +48,13 @@ td {
     -o-border-radius: 5px;
 }
 
+th {
+  border-radius: 5px !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
 table.center {
   margin-left:auto; 
   margin-right:auto;
@@ -306,6 +313,35 @@ div a.editbutton.active a {
   color: black !important;
 }
 
+td.penpalinfo a {
+  font-weight: 800 !important;
+  text-decoration: underline !important;
+  color: black !important;
+}
+
+td.penpalinfo a.visited {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+td.penpalinfo a.visited:active {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+td.penpalinfo a.active a {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+td.penpalinfo a:hover {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: blue !important;
+}
 
 /* -------------------------------- PENPAL LISTINGS -------------------------------- */
 
@@ -339,7 +375,6 @@ div a.editbutton.active a {
  }
 
  #penpals {
-    font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
     margin-top: 2rem;
@@ -358,8 +393,6 @@ table#penpals {
 
   #penpals tr:nth-child(even){background-color: rgba(214, 173, 184, .8)}
   
-  #penpals tr:hover {background-color: rgba(222, 178, 139, .8);}
-
   .profile {
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
@@ -367,11 +400,12 @@ table#penpals {
   }
   
   .listbutton {
-    background-color:  rgb(214, 173, 184) !important;
+    background-color:  white !important;
     color: black;
     font-weight: 600;
     font-size: 16px;
-    padding: 2px;
+    padding-right: 8px;
+    padding-left: 8px;
     border-radius: 5px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -483,7 +517,19 @@ table#penpals {
     -o-border-radius: 5px;
 }
 
+/* -------------------------------- TOASTS -------------------------------- */
+/* credit: code taken from https://codepen.io/bronsrobin/full/AmOyRR and edited to fit project needs */
 
+.message-container {
+  position: fixed;
+  top: 72px;
+  right: 15px;
+  z-index: 99999999999;
+}
+
+.custom-toast {
+  overflow: visible;
+}
 
 /* -------------------------------- MEDIA QUERIES -------------------------------- */
 
