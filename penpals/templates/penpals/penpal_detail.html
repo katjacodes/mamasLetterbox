@@ -1,4 +1,4 @@
-<!--- credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1/blob/6a51b60c029c78540dd10d7c5b241eaa902aa000/home/templates/home/index.html and edited to fit project needs -->
+<!--- credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1 and edited to fit project needs -->
 
 
 {% extends "base.html" %}
@@ -21,9 +21,6 @@
                     <h1 class="display-4 logo-font text-black center">
                         {{ penpal.name }}
                     </h1>
-                    <div class="text-center">
-                        <a class="editbutton" href="{% url 'penpal_me_edit' %}">Edit Profile</a>
-                    </div>
                 </div>  
             </div>
             <table class="penpaltable center">
@@ -83,6 +80,12 @@
                     <tr >
                         <td class="penpalinfo">Age Child 5:</td>
                         <td class="penpalinfo">{{ penpal.childAge5 }} </td>
+                    </tr>
+                    <tr >
+                        <td class="penpalinfo">Email:</td>
+                        <td class="penpalinfo">
+                            <a href="mailto: {{ penpal.email }}">{{ penpal.email }}</a>
+                        </td>
                     </tr>
                 </tbody>
             </table>
