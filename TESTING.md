@@ -86,3 +86,48 @@ Despite creating all the urlpaths, the pages could not be found
 #### Solution:
 
 Badond on this [Stackoverflow solution](https://stackoverflow.com/questions/55429392/django-url-pattern-not-being-found), I was able to modify the urlpaths and get them to work.
+
+
+### Toast Appearing for Every Action, on Every Page
+
+
+### My Profile URL Always Directs to Profile Creation Page (```302``` Error)
+
+
+### Unable to Attach Penpal Profile to Authenticated User
+
+First attempt: 
+```penpals/forms.py```
+
+```
+class PenpalForm(forms.ModelForm):
+    class Meta:
+        model = PenpalProfile
+        fields = '__all__'
+```
+Result: During profile creation, a registered user could select a username from a list of all registered users.
+
+
+Second attempt:
+```penpals/forms.py```
+
+```
+class PenpalForm(forms.ModelForm):
+    class Meta:
+        model = PenpalProfile
+        exclude = [
+            'user'
+        ]
+```
+Result: The penpal profile was not attached to the registered user.
+
+
+#### Solution: Based on the solution on this [Django Project thread](https://forum.djangoproject.com/t/automatically-get-user-id-to-assignate-to-form-when-submitting/5333/7), I added an additional field referencing the ```id``` from the ```User``` model after form validation, like so:
+```
+if form.is_valid():
+            new_profile = PenpalProfile.objects.create(
+                user = User.objects.get(pk=request.user.id),
+            )
+            new_profile.save()
+            return redirect('penpal_list')
+```
