@@ -1,0 +1,99 @@
+<!--- credit: code taken from https://github.com/Code-Institute-Solutions/boutique_ado_v1 and edited to fit project needs -->
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container h-100 w-100">
+    <div class="outerframe">
+        <div class="frame">
+            <div class="row">
+                <div class="textcenter col-12 col-md-4 mx-auto">
+                    <h1 class="display-4 logo-font text-black center">
+                        {{ penpal.name }}
+                    </h1>
+                    <div class="text-center">
+                        <a class="editbutton" href="{% url 'penpal_me_edit' %}">Edit Profile</a>
+                       <a class="editbutton" href="{% url 'penpal_delete' %}">Delete Profile</a>
+                    </div>
+                </div>  
+            </div>
+            <table class="penpaltable center">
+                <tbody>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Pronouns: </td>
+                        <td class="penpalinfo">{{ penpal.pronoun }}</td>
+                    </tr>
+                    <tr>
+                        <td class="penpalinfo">Age:</td>
+                        <td class="penpalinfo">{{ penpal.age }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Language:</td>
+                        <td class="penpalinfo">{{ penpal.language1 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Language 2:</td>
+                        <td class="penpalinfo">{{ penpal.language2 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Language 3:</td>
+                        <td class="penpalinfo">{{ penpal.language3 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Country:</td>
+                        <td class="penpalinfo">{{ penpal.country }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Hobby:</td>
+                        <td class="penpalinfo">{{ penpal.hobby1 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Hobby 2:</td>
+                        <td class="penpalinfo">{{ penpal.hobby2 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Hobby 3:</td>
+                        <td class="penpalinfo">{{ penpal.hobby3 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child:</td>
+                        <td class="penpalinfo">{{ penpal.childAge1 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child 2:</td>
+                        <td class="penpalinfo">{{ penpal.childAge2 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child 3:</td>
+                        <td class="penpalinfo">{{ penpal.childAge3 }} </td>
+                    </tr>
+                    <tr class="penpalrow">
+                        <td class="penpalinfo">Age Child 4:</td>
+                        <td class="penpalinfo">{{ penpal.childAge4 }} </td>
+                    </tr>
+                    <tr >
+                        <td class="penpalinfo">Age Child 5:</td>
+                        <td class="penpalinfo">{{ penpal.childAge5 }} </td>
+                    </tr>
+                    <tr >
+                        <td class="penpalinfo">Email:</td>
+                        <td class="penpalinfo">
+                            <a href="mailto: {{ penpal.email }}">{{ penpal.email }}</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
