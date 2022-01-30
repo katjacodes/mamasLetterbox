@@ -71,7 +71,6 @@ NOT NULL constraint failed: home_item.childAge2
 ```
 
 #### Solution: 
-
 ```
 "blank=True" "null=True" 
 ````
@@ -84,7 +83,6 @@ require an additional ``` default value ```.
 Despite creating all the urlpaths, the pages could not be found
 
 #### Solution:
-
 Based on on this [Stackoverflow solution](https://stackoverflow.com/questions/55429392/django-url-pattern-not-being-found), I was able to modify the urlpaths and get them to work.
 
 
@@ -116,7 +114,8 @@ class PenpalForm(forms.ModelForm):
 Result: The penpal profile was not attached to the registered user.
 
 
-#### Solution: Based on the solution on this [Django Project thread](https://forum.djangoproject.com/t/automatically-get-user-id-to-assignate-to-form-when-submitting/5333/7), I added an additional field referencing the ```id``` from the ```User``` model after form validation, like so:
+#### Solution: 
+Based on the solution on this [Django Project thread](https://forum.djangoproject.com/t/automatically-get-user-id-to-assignate-to-form-when-submitting/5333/7), I added an additional field referencing the ```id``` from the ```User``` model after form validation, like so:
 ```
 if form.is_valid():
             new_profile = PenpalProfile.objects.create(
