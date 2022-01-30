@@ -3,6 +3,7 @@ Code taken from Code Institute's Hello Django module and edited to fit project n
 """
 
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -54,7 +55,7 @@ def my_penpal_profile_edit(request):
 
 @login_required
 def penpal_detail(request, penpal_id):
-    penpals = get_object_or_404(Penpal, id=penpal_id)
+    penpal = get_object_or_404(Penpal, id=penpal_id)
     context = {'penpal': penpal}
     return render(request, 'penpals/penpal_detail.html', context)
 
@@ -64,8 +65,11 @@ def penpal_create(request):
     if request.method == 'POST':
         form = PenpalForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('penpal_me')
+            new_profile = PenpalProfile.objects.create(
+                user = User.objects.get(pk=request.user.id),
+            )
+            new_profile.save()
+            return redirect('penpal_list')
     else:
         form = PenpalForm()
     context = {
@@ -79,5 +83,6 @@ def penpal_delete(request):
         penpal = request.user.penpal
         penpal.delete()
         messages.success(request, f'Penpal profile successfully deleted!')
+        
     else:
         return redirect(reverse('penpal_create'))
