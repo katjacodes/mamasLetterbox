@@ -34,7 +34,7 @@ Currently, the general goals of the application are:
 * A way to increase the amount of offline acctivities in their lives
 
 #### Client Stories
-Client Stories and the status of the features in response to those stories can be found in the User Stories Overview[https://docs.google.com/spreadsheets/d/1CRY7aYiLONmYjMFSnk4xuDKDCOrky4-98dOgRmqB0fU/edit?usp=sharing].
+Client Stories and the status of the features in response to those stories can be found in the [User Stories Overview](https://docs.google.com/spreadsheets/d/1CRY7aYiLONmYjMFSnk4xuDKDCOrky4-98dOgRmqB0fU/edit?usp=sharing).
 
 ### Wireframe Mockups: 
 - [Landing Page](media/mamasLetterboxHOME.png)
@@ -77,20 +77,17 @@ This page is visible only to subscripers. Users who have not purchased a subscri
 The subscription page directs the user to Stripe, where they can purchase a subscription, currently available at the symbolic price of $0.50 to allow new users to test out the site without any risk while additional features are still being developed. This approach will hopefully make more users purchase a subscription and thus make the site more attractive for future users.
 
 ### Existing Features
-- Header Navigation Bar - Exists on [every page](base.html) and allows all users to easily navigate all the website's pages and find what they are looking for quickly, including being led back to their profile page when cklicing on the **logo**. (When clicking on the logo while not logged in, the login page will reload.)
-- [Registration Page](register.html) - Allows new users to open an account and leads existing users to the login page throughte embedded link or by clicking on the Log In item in the navbar.
-- [Login Page](login.html) - Allows existing users to log in to their account and leads new users to the registration page throughte embedded link or by clicking on the Log In item in the navbar.
-- [Add Client Page](addClient.html) - Displayed only to logged in users. Provides interface to enter and save new client information.
-- [Manage Clients Page](clientInfo.html) - Displayed only to logged in users. Displays the organization names of all saved client information entries *in alphabetical order* and allows uers to view the complete entries, delete them, and access the edit page. 
-- [Edit Client Page](editClient.html) - Displayed only to logged in users. Allows users to modify every line of the selected client information entry and either save or discard the changes. Automatically displays the current date in standard U.S. format at the top of the page.
-- [New Invoice Page](invoice.html) - Displayed only to logged in users. Allows users to create an invoice by using the dropdown menus and textfields that are part of the form and converting the completed form into ready-to-share pdf document at the end.
-- [Profile Page](profile.html) - Displayed only to logged in users. Provides quick explanations of and direct links to the different functionalities of the application.
+- Header Navigation Bar - Exists on [every page](templates/main-nav.html) and allows all users to easily navigate all the website's pages and find what they are looking for quickly, including being led back to their profile page when clicking on the **Account icon** and the on **My Profile**. (When clicking on the icon while not logged in, a visitor will be able to either register or log in.)
+- [User Account Administration](templates/allauth) - This site uses the **Allauth** package to provide vistors with comprehensive user account management, including account creation and email verification, login, logout, and forgotten password recovery.
+- [Profile Creation](penpals/templates/penpal_create) and [Profile Editing](penpals/teamplates/penpal_edit) allowys registered users to create and edit their [personal profile](penpals/templates/penpal_detail) tied to their user account and visible to users with subscriptions.
+- [Penpal Listing](penpals/templates/penpal_list) allows **users** to see a list of other registered users, their age, language(s), and location. **Subscribers** can click on a button next to the profile and see more profile details including **contact information**.
+- The [Subscription Feature](subscriptions/templates/home) allows users to purchase a monthly subscription, currently at a trial price of U.S. $0.50/month to be able to view complete profile details of other users registered in the penapl database and contact them. Existing subscribers have the option to cancel their subscription using the **contact link** provided in the [Subscribers' view of the page](subscriptions/templates/subscriber.html).
 
 ### Features to Implement in the Future
-- POST request-based functionality for users to submit additional personal information on the profile page, which will then be added to the invoice header via GET request.
-- Functionality to add rates to the database the same way it is currently possible to add client information.
-- A modal confirming a user's intent to delete a client information entry.
-- Forgot password functionality.
+- Profile pictur feature as part of the penpal profile.
+- Integrated chat option.
+- Ability to manage subscription directly from the website. 
+- A blog spotlighting existing members
 
 
 ## Technologies Used
@@ -108,16 +105,16 @@ The subscription page directs the user to Stripe, where they can purchase a subs
 
 ### Frameworks, Libraries, Other
 
-- [Heroku](https://dashboard.heroku.com/). The cloud platform used to deploy and run the code pushed to the associated GitHub repository.
+- [Heroku](https://dashboard.heroku.com/) - The cloud platform used to deploy and run the code pushed to the associated GitHub repository.
 - [Django](https://www.djangoproject.com/) - The project was built using Django's web framework.
-- [SQLite](https://www.sqlite.org/index.html) - default Django's database used in development.
-- [PostgreSQL](https://www.postgresql.org/) - production database through Heroku.
+- [SQLite](https://www.sqlite.org/index.html) - Pefault Django's database used in development.
+- [PostgreSQL](https://www.postgresql.org/) - Production database through Heroku.
 - [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - CSS framework.
-- [jQuery](https://jquery.com/)
-- [Google Fonts](https://fonts.google.com/)
+- [jQuery](https://jquery.com/) - JavaScript framework.
+- [Google Fonts](https://fonts.google.com/) - Additional fonts.
 - [AWS Amazon S3](https://aws.amazon.com/s3/) - Amazon Simple Storage Service (Amazon S3) was used to store media and static files used in the project.
-- [Font Awesome](https://fontawesome.com/)
-- [Stripe](https://stripe.com/docs) - Stripe was used for the online payment authentication and processing system.
+- [Font Awesome](https://fontawesome.com/) - Icons.
+- [Stripe](https://stripe.com/docs) - Stripe was used for the subscription plan.
 
 ### Version Control
 
@@ -131,30 +128,182 @@ The subscription page directs the user to Stripe, where they can purchase a subs
 ## Testing 
 Testing information can be found in a separate [TESTING.md file](TESTING.md).
 
-## Deployment
-This project was developed using the [Gitpod](https://gitpod.io) deveopment environment, committed to git, and pushed to GitHub using the Gitpod terminal. 
+## Deployment -- Steps taken from and followed based on [Fraciska Du Toit's project Hapybean](https://github.com/Franciskadtt/happybean). 
+#### Setup an enviroment for variables
+You now need to set up the database with environment variables. Create a file titled env.py and make sure it is placed on top of the of file structure, on the same level as the app.py file. Alternatively, they can be added to the workspace variable section. 
 
-To deploy this page to [Heroku](https://heroku.com/) from its [GitHub repository](https://github.com/katjacodes/invoicingApp), the following process was completed: 
-1. Log in to Heroku
-2. Click **"]New** and select **Create New App** from the drop-down menu in the upper right half of the window. 
-3. Enter a **Name** for your application. The name needs to be unique. Next, select the **Region** closest to your geographical location. When you're finished, click **Create App**.
-4. In the navbar at the top of the page, click on **Settings**, scroll down to the **Reveal Config Vars** button, and click it.
-5. Enter the following information:
-    IP: 0.0.0.0
-    MONGODB_NAME: [name of the MongoDB cluster you are using for your application]
-    MONGO_URI: [the URI you created after setting up your collection in MongoDB found by logging in to MongoDB > navigating to the cluster that holds the collection you are using for your application > clicking on "Connect" > selecting "Connect your application" > selecting the correct driver & version > copying the generated string & replacing the placeholders in it with your own information]
-    PORT: 5000
-    SECRET_KEY: [copy from the [env.py](env.py) file
-    Click **Add** after entering each variable.
-6. Scroll down and click **Buildpacks** and select **Python**, then click **Save changes**.
-7. In the navbar at the top of the page, click on **Deploy**, scroll down to **Deployment method**, and select **GitHub**.
-8. **Authorize** the connection to GitHub.
-9. Search for your **GitHub repository name** and select the repository holding the code for you application.
-10. Make sure the **Main Branch** is selected for deployment and select **Enable Automatic Deploys** for Heroku to automatically re-build your application every time you push your code to GitHub.
-11. Click the **Deploy Branch** button. Once Heroku has built the application, a pop-up message will confirm deployment
-12. You can click the **View** button to be taken directly to the site.
+Option 1: Env.py file:
+```
+ os.environ.setdefault('SECRET_KEY', '<your_variable_here>')
+ os.environ.setdefault('DEVELOPMENT', 'True')
+ os.environ.setdefault('STRIPE_PUBLIC_KEY', '<your_variable_here>')
+ os.environ.setdefault('STRIPE_SECRET_KEY', '<your_variable_here>')
+ os.environ.setdefault('STRIPE_WH_SECRET_CH', '<your_variable_here>')
+ os.environ.setdefault('STRIPE_WH_SECRET_SUB', '<your_variable_here>')
+ ```
+- In ` settings.py`  add:
+```
+if os.path.exists("env.py"):
+    import env
+```
+-  Add your env.py file to `.gitignore`, before pushing your changes.
 
-At the moment of submitting this Milestone project the Development Branch and Main Branch are identical. 
+
+<br>Option 2: Workspace Variables:
+```
+KEY = 'SECRET_KEY', VALUE = '<your_variable_here>'
+KEY = 'DEVELOPMENT', VALUE = 'True'
+KEY = 'STRIPE_PUBLIC_KEY', VALUE = '<your_variable_here>'
+KEY = 'STRIPE_SECRET_KEY', VALUE = '<your_variable_here>'
+KEY = 'STRIPE_WH_SECRET_CH', VALUE = '<your_variable_here>'
+KEY = 'STRIPE_WH_SECRET_SUB', VALUE = '<your_variable_here>'
+KEY = 'AWS_ACCESS_KEY_ID', VALUE: '<your_variable_here>'
+KEY = 'AWS_SECRET_ACCESS_KEY', VALUE: '<your_variable_here>'
+KEY = 'USE_AWS', VALUE: 'True'
+ ```
+
+- In ` settings.py`  add:
+ ```
+ SECRET_KEY = os.environ.get('SECRET_KEY', '')
+ ```
+
+#### DEBUG 
+```
+DEBUG = 'DEVELOPMENT' in os.environ
+```
+
+### **Heroku Deployment**
+- Go to the [Heroku](https://www.heroku.com/) website. Register for an account and click on "Create a new app".
+- Setup a Heroku app within the Heroku dashboard - Type in the app name and select region the click on create app.
+- In Heroku, in your app, click on "GitHub" to connect to your repository. Type in the repository name as on GitHub. Click on "Connect".
+- Search for your repo (or sign in and connect GitHub account) and select this.
+- Then click "Hide Config Vars" in Heroku.
+- Go to the resources tab and search for Heroku Postgres. Choose the “hobby dev - free” option and submit the order form.
+- On the `settings.py file`, you will need to comment out the 'SQLite and Postgres databases' section and uncomment the 'PostgreSQL Database' section. (this is temporary, nothing should be pushed/committed just yet).
+- Add the database URL from Heroku & migrate your models to the PostgreSQL database with: 
+    ```
+    python3 manage.py migrate
+    ```
+- Create a superuser with the following command, and fill in the required information.:
+    ```
+    python3 manage.py createsuperuser
+    ```
+- In the `settings.py` file, you can now delete the 'PostgreSQL Database' section and uncomment the 'SQLite and PostgreSQL Databases' section. This means that either database can now be used interchangeably.
+- Install gunicorn and freeze that to the requirements file with the following commands:
+    ```
+    pip3 install gunicorn
+    pip3 freeze --local > requirements.txt
+    ```
+- Create a Procfile and inside, add the following:
+    ```
+    web: gunicorn mamasLetterbox.wsgi:application
+- In `settings.py`, use an if statement so that when the app runs on Heroku, you will connect to Postgres, and otherwise, it will connect to sqlite3:
+    ```
+    if 'DATABASE_URL' in os.environ:
+        DATABASES = {
+            'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+    ```
+- Copy the variables from the variable enviroment one by one into the heroku config vars. They would be:
+   ```
+    KEY: 'SECRET_KEY', VALUE: “your_variable_here”
+    KEY: 'DEVELOPMENT', VALUE: "True"
+    KEY: 'STRIPE_PUBLIC_KEY', VALUE: "your_variable_here"
+    KEY: 'STRIPE_SECRET_KEY', VALUE: "your_variable_here"
+    KEY: 'STRIPE_WH_SECRET_CH', VALUE: "your_variable_here"
+    KEY: 'STRIPE_WH_SECRET_SUB', VALUE: "your_variable_here"
+    KEY: AWS_ACCESS_KEY_ID, VALUE: "AWS access key ID"
+    KEY: AWS_SECRET_ACCESS_KEY, VALUE: "AWS secret access key"
+    KEY: USE_AWS, VALUE: "True"
+    ```
+- Log in to Heroku in the CLI and temporarity disable collectstatic, with the following command:
+    ```
+    heroku config:set DISABLE_COLLECTSTATIC=1 --app happybean
+    ```
+- Add your Heroku app and local host to allowed hosts in `settings.py.`
+- Push to Github, and then to Heroku master. 
+- In Heroku, go to the 'Deploy' tab. In the section 'Deployment Method' click on 'Github - Connect to Github'. Make sure your Github profile is displayed. Add the repository name and click on 'Search'. After Heroku has found the repository, click on 'Connect'. This will connect your Heroku app to your GitHub repository. Click 'Enable automatic deploys'. Your code will automatically be deployed to Heroku as well. 
+
+### **AWS (Amazon Web Services)**
+Create an account with [AWS](www.aws.amazon.com), follow the steps and sign in. 
+- Go to the AWS management console and go to the S3 service. There, create a new bucket. Uncheck 'block all public access' and acknowledge that the bucket will be public.
+- Go to the buckets properties, and turn on static website hosting. Select 'Use this bucket to host a website', and fill in index.html and error.html, then click 'save'.
+- Go to the permissions tab, and go to CORS configuration. Paste in a CORS configuration:
+```
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+```
+- Go to the Bucket policy tab and click 'policy generator', to create a policy. Choose 's3 bucket policy', allow all principals by typing a star. From the action dropdown menu select 'GetObject'. Copy the ARN and paste it into the ARN box. Then click 'add statment' and then click 'generate policy'. Copy the policy into the bucket policy editor. Add a slash star onto the end of the resource key. Click 'save'. 
+- Go to access control list tab, under public access, click on 'Everyone', select 'List Objects'. Then click 'save'. 
+- Go to IAM (from services menu), click on 'groups' and create a new user group. Give the group a group name (f.e. 'manage-happybean'). Then click 'create group'. 
+- Click 'policies' in the dashboard, and then click 'create policy'. Go to the JSON tab. Click 'import managed policy'. Import 'AmazonS3FullAccess'. Get the bucket ARN from the bucket policy page in S3, and paste that in after 'Resource', as a list (first the ARN, then also the ARN with a slash and star). Click 'next tags' and then 'next review'. Give it a name and description. Click 'create policy'. 
+- Go to 'groups'. Click the manage-happybean group. Go to 'permissions'. Click 'attach policy'. Select the policy you just created. Click 'add permissions' and then 'Attach policy'.
+- Go to 'users'. Click 'add user'. As username write 'happybean-staticfiles-user. Give programmatic access. Click 'next'. Add the user to the group. Click through to the end. Download the .csv file. 
+
+### **Connecting to DJANGO to S3**
+- Go back to GitPod. Install boto3 and Django storages, and freeze them to the requirement file with the following commands:
+    ```
+    pip3 install boto3
+    pip3 install django-storages
+    pip3 freeze > requirements.txt
+    ```
+- Add 'storages' to the installed apps in the settings.py file.
+- Add the following if statement:
+    ```
+    if 'USE_AWS' in os.environ:
+        AWS_STORAGE_BUCKET_NAME = 'happybean'
+        AWS_S3_REGION_NAME = 'eu-west-1'
+        AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+        AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    ```
+- On Heroku, add the AWS keys to the Config Variables (they can be found in the csv file you downloaded earlier). Also, add USE_AWS and set it to True. 
+- Remove the DISABLE_COLLECTSTATIC from the variables. 
+- In GitPod, create a file called custom_storages.py and add:
+    ```
+    from django.conf import settings
+    from storages.backends.s3boto3 import S#Boto3Storage
+
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+
+
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION 
+    ```
+- To the before mentioned if statement from above, in settings.py, also add:
+    ```
+        STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+        STATICFILES_LOCATION = 'static'
+        DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+        MEDIAFILES_LOCATION = 'media'
+
+        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    ```
+- Add, commit and push these changes. If you now go to the bucket, you will see all the static files. 
+- Go to your bucket and add a new folder called media. Inside it, click 'upload' and then 'add files'. Then select all the images you'd like to use. Click 'next'. Under 'manage public permissions', select 'grant public read access'.
+- On Stripe, add a new webhook endpoint, with the URL of your Heroku app, followed by 
+```/checkout/wh/```. Select 'receive all events' and click 'add endpoint'.
 
 ### How to Clone the Repository
 To clone this project into Gitpod you will need a Github account and an HTML 2 PDF Rocket account. You can [create a Github account here](https://github.com/), and you can [create an HTML 2 PDF Rocket account here.](https://www.html2pdfrocket.com/).
@@ -174,28 +323,23 @@ To work on the project code within a local IDE such as VSCode, Sublime Text, etc
 6. Type ```git clone```, and then paste the URL you copied in Step 4.
 7. Press Enter for your local clon to be created.
 
-You will need to create an HTML to PDF Rocket account to obtain an API key for the API that will allow you to create PDF a PDF version of your invoice. To do so, follow these steps.
-1. Ater you [create your HTML 2 PDF Rocket account](https://www.html2pdfrocket.com/), you will be sent your API key to the email you registered with. At that time, you can also update your password.
-2. Navigate to to the [Code Examples page](https://www.html2pdfrocket.com/Examples/javascript) and copy the HTML and JavaScript code to create a button that will allow you to create PDF documents.
-3. Make sure to update the following information in the code:
-    - Your API key
-    - The URL of the page you want turn into a PDF document, i.e., the URL of your invoice page.
+You will need to create a [Stripe account](https://stripe.com/) to integrate payment function for the subscription plan.
 
 
 ## Credits
 ### Content
-- The background image was created by [Ramiro Menes for Unsplash](https://unsplash.com/photos/sMCBEI5zkqc) and made available under the [Do Whatever You Want License](https://unsplash.com/license).
+- The background image was created by [Egor Myznik for Unsplash](https://unsplash.com/photos/goqv5ZsmjfY) and made available under the [free to use Unsplash License](https://unsplash.com/license).
 
 ### Code
-- The [Code Institute Walk-Through project](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/08-SearchingWithinTheDatabase/01-text_index_searching) for Milestone 3 was taken as a starting point for the set-up of the base, addClient, clientInfo, editClient, login, register, and logout templates and edited heavily.
-- The [Code Institute Walk-Through project](https://github.com/Code-Institute-Solutions/TaskManagerAuth/tree/main/08-SearchingWithinTheDatabase/01-text_index_searching) for Milestone 3 was taken as a starting point for parts of the [app.py](app.py) file.
-- HTML, CSS, and JS code for the scroll-to-top button originally taken from [W3 Schools](https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top) and edited slightly to fit project needs.
-- The JavaScript code for the automatic date set function on the invoice page was taken from [W3 Schools](https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_tolocaledatestrin) and edited to display the date in U.S. format.
-- The JavaScript code for the addition of charges on the invoice page was taken from [Codegrepper](https://www.codegrepper.com/code-examples/javascript/calculate+two+number+and+diplay+next+field+without+reload+the+page+javascript) and edited to fit project needs.
-- The HTML and JavaScript code for the integration of the PDF conversion API was taken from [HTML 2 PDF Rocket](https://www.html2pdfrocket.com/Examples/javascript) and edited to fit project needs.
-- Joshua Ugba helped me understand how to connect Python and Javascript for the automatic address field population section of the invoice page.
+The [Code Institute Boutique Ado project](https://github.com/Code-Institute-Solutions/boutique_ado_v1) was used as a starting point for the HTML templates in the Home application and some of the HTML templates in the Penpals application.
+
+The [Code Institute Hello Dango module](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/1e823874aa044d92aa949431864834e5/0b913e08a887468b9e5448274ff16372/) was used as a starting point for the views of the Penpals application.
+
+[Nik Tomazic's tutorial on Django Stripe Subscriptions](https://testdriven.io/blog/django-stripe-subscriptions/) was used as a starting point for the subscription functionality.
+
+Benoît Blanchon helped me fix a bug that caused issues with my loccal Gitpod environment, taught me how to write my own decorators to restrict access to certain parts of my site to paying subscribers, and helped me debug my Penpals model and the views in my Subscriptions application.
 
 
 ### Acknowledgements
-- The Code Institute Slack Community and my session with a tutor was really really helped me out by providing pointers when I got stuck and unable to see the forest for the trees.
-- Joshua Ugba took the time to explain to me in depth how to integrate JavaScript and Python. I owe a better understanding of JSON files to him. 
+- Benoît Blanchon took the time to explain decorators and sginals to me and helped me get a better understanding of the way Djano and Stripe work together.
+- Dom Habersack is an invaluable help whenever I have JavaScript-related questions. (And I continue to have many.)
