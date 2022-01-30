@@ -128,7 +128,9 @@ The subscription page directs the user to Stripe, where they can purchase a subs
 ## Testing 
 Testing information can be found in a separate [TESTING.md file](TESTING.md).
 
-## Deployment -- Steps taken from and followed based on [Fraciska Du Toit's project Hapybean](https://github.com/Franciskadtt/happybean). 
+## Deployment 
+(Steps taken from and followed based on [Fraciska Du Toit's project Happybean](https://github.com/Franciskadtt/happybean))
+
 #### Setup an enviroment for variables
 You now need to set up the database with environment variables. Create a file titled env.py and make sure it is placed on top of the of file structure, on the same level as the app.py file. Alternatively, they can be added to the workspace variable section. 
 

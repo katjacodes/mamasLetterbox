@@ -53,7 +53,6 @@ def __string__(self):
         return self.name
 ```
 
-
 #### Solution:
 Changed to 
 
@@ -63,6 +62,7 @@ def __str__(self):
 ```
 
 based on information found in the documentation for [a flake8 plug-in](https://github.com/rocioar/flake8-django/wiki/%5BDJ08%5D-Model-does-not-define-__str__-method).
+
 
 ### ``` NOT NULL constraint failed ```
 
@@ -74,53 +74,15 @@ NOT NULL constraint failed: home_item.childAge2
 
 ```
 "blank=True" "null=True" 
-
 ````
 
 require an additional ``` default value ```.
 
 
+### URLs in Penpals App not Accessible
 
+Despite creating all the urlpaths, the pages could not be found
 
+#### Solution:
 
-#### JavaScript Date Shown in the Wrong Format
-- Using the JavaScript ``Date()`` constructor, the date at the to of the invoice template did not appear in the desired format.
-
-- Using a customized function that including a location setting allowed me to set the date to standard U.S. format, i.e., the format of the region where the app will be used:
-
-<figure align="left">
-    <img src="static/img/testing/jsDate.png" alt="JavaScript code of a customized date function used to display the current date in U.S. standard format"/>
-    <figcaption>JavaScript code of a customized date function used to display the current date in U.S. standard format</figcaption>
-</figure>
-
-
-### List of Clients Disappared
-
-- At one point, the list of clients on the manage clients page completely disappeared.
-
-- Using Google Developer Tools, I discovered the following:
-
- ```list``` in ```clientInfo``` had been missing. Below the fixed code:\
-```@app.route("/get_clientInfo")```\
-```def get_clientInfo():```\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```clientInfo = list(mongo.db.clientInfo.find())```\
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;```return render_template("clientInfo.html", clientInfo=clientInfo)```\
-
-
-### Failure to Display Multiple Dropdown Menus on the Same Page
-- Initially, I did not magage to display several different dropdown menus on the invoice page. This is the code I was usinng:
-
-<figure align="left">
-    <img src="static/img/testing/severalDropdowns.png" alt="Python code that did not allow me to display more than one dropdown menu on the invoice page"/>
-    <figcaption>Python code that did not allow me to display more than one dropdown menu on the invoice page</figcaption>
-</figure>
-
-
-### Buttons on Edit Client Page Not Centered on iPad
-- During initial testing of responsiveness, the buttons on the editc client page were not centered on iPad screens.
-- I solved the problem by writing my own CSS code instead of using the Materialize styling.
-
-
-### JavaScript Function at the Bottom of Invoice Page not Adding Amounts
-- Initially, the field for the total remained blank even after selecting amount from the dropdown menus.
-- Through Google research I realized that I needed to save the rates in the Int64 format, not as strings, in MongoDB.
+Badond on this [Stackoverflow solution](https://stackoverflow.com/questions/55429392/django-url-pattern-not-being-found), I was able to modify the urlpaths and get them to work.
