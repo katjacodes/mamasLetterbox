@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tiph1-knz9m&1@s&y*&85dm34jdke^^x+uj!e78i5(*i(9orak
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mamas-letterbox.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Mandatory if Django runs behind a reverse proxy (e.g. GitPod)
 USE_X_FORWARDED_HOST = True
@@ -183,3 +183,15 @@ STRIPE_PUBLISHABLE_KEY = 'pk_test_51KKMAhDOx8yDZB7retZqFlzZDGgWkWeguhfiEJfp9bujE
 STRIPE_SECRET_KEY = 'sk_test_51KKMAhDOx8yDZB7rPOjGTHIbN1BFyQqCYAKDpmvtm3JPtRV9yCL6iwGS2ZLUsD33bew4bSRR2LQ7b0VNk343VKWb00FB1TtDgg'
 STRIPE_PRICE_ID = 'price_1KMxWyDOx8yDZB7ruta2EfFX'
 STRIPE_ENDPOINT_SECRET = 'whsec_DA6i4jwptoSYij6peUkpDbt3Je8lpERW'
+
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'katjacodes@gmail.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
