@@ -10,35 +10,29 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from subscriptions.decorators import subscription_required
 
+from subscriptions.helpers import is_user_subscribed
 from .models import PenpalProfile
 from .forms import PenpalForm
 
 
 @login_required
-def basicdetails(request):
-    """
-    Basic profile details, visible
-    to registered users without
-    a subscription
-    """
-
-    penpals = PenpalProfile.objects.all()
-    context = {'penpals': penpals}
-    return render(request, 'penpals/basic_details.html', context)
-
-
-@subscription_required
 def penpal_list(request):
     """
     List of registered penpals with
     option to see additional details,
     accessible only to registered
-    users with a subscription.
+    users with a subscription and
+    basic profile details, visible
+    to registered users without
+    a subscription.
     """
 
-    penpals = PenpalProfile.objects.all()
+    penpals = PenpalProfile.objects.exclude(user__is_active=False)
     context = {'penpals': penpals}
-    return render(request, 'penpals/penpal_list.html', context)
+    if is_user_subscribed(request.user):
+        return render(request, 'penpals/penpal_list.html', context)
+    else:
+        return render(request, 'penpals/basic_details.html', context)
 
 
 @login_required
@@ -75,7 +69,7 @@ def my_penpal_profile_edit(request):
 def penpal_detail(request, penpal_id):
     """ A registered user's own penpal profile """
 
-    penpal = get_object_or_404(Penpal, id=penpal_id)
+    penpal = get_object_or_404(PenpalProfile, id=penpal_id, user__is_active=True)
     context = {'penpal': penpal}
     return render(request, 'penpals/penpal_detail.html', context)
 
@@ -110,10 +104,7 @@ def penpal_delete(request):
     for registered users
     """
 
-    if hasattr(request.user, 'penpal'):
-        penpal = request.user.penpal
-        penpal.delete()
-        messages.success(request, f'Penpal profile successfully deleted!')
-
-    else:
-        return redirect(reverse('penpal_create'))
+    request.user.is_active=False
+    request.user.save()
+    messages.success(request, 'Penpal profile successfully deleted!')
+    return redirect('home')
