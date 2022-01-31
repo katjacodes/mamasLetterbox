@@ -369,47 +369,53 @@ td.penpalinfo a:hover {
     -o-border-radius: 25px;
  }
 
- .penpalwrapper {
-     margin-left: auto;
-     margin-right: auto;
- }
-
- #penpals {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 2rem;
-  }
-  
-table#penpals {
-  border-collapse: separate;
+.penpalwrapper {
+    margin-left: auto;
+    margin-right: auto;
 }
 
-  #penpals td {
-    border: 1px solid rgba(213, 6, 71, .8);
-    padding: 8px;
-  }
-  
-  #penpals tr:nth-child(odd){background-color: rgba(213, 6, 71, .8)}
+#penpals {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2rem;
+}
 
-  #penpals tr:nth-child(even){background-color: rgba(214, 173, 184, .8)}
-  
-  .profile {
-    font-family: Arial, Helvetica, sans-serif;
-    width: 100%;
-    margin-top: 2rem;
-  }
-  
-  .listbutton {
-    background-color:  white !important;
-    color: black;
-    font-weight: 600;
-    font-size: 16px;
-    padding-right: 8px;
-    padding-left: 8px;
-    border-radius: 5px;
-      -webkit-border-radius: 5px;
-      -moz-border-radius: 5px;
-      -o-border-radius: 5px;
+table#penpals {
+border-collapse: separate;
+}
+
+#penpals td {
+  border: 1px solid rgba(213, 6, 71, .8);
+  padding: 8px;
+}
+
+#penpals tr:nth-child(odd){background-color: rgba(213, 6, 71, .8)}
+
+#penpals tr:nth-child(even){background-color: rgba(214, 173, 184, .8)}
+
+.profile {
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+td div a.listbutton {
+  background-color:  white !important;
+  color: black;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+td div a.listbutton:hover {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
 }
 
 /* -------------------------------- SUBSCRIPTIONS PAGE -------------------------------- */
@@ -505,13 +511,14 @@ table#penpals {
   font-weight: 700;
 }
 
-.subscribebutton {
+div a.subscribebutton {
   background-color:  rgb(213, 6, 71) !important;
   color: black;
   font-weight: 600;
   font-size: 21px;
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid black;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
