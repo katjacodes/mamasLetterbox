@@ -40,12 +40,17 @@ def my_penpal_profile(request):
         context = {'penpal': request.user.penpal}
         return render(request, 'penpals/my_details.html', context)
     else:
-        return redirect(reverse('penpal_create'))
+        return redirect('penpal_me_edit')
 
 
 @login_required
 def my_penpal_profile_edit(request):
-    """ Profile editing page """
+    """ 
+    Profile creation and editing page.
+    Thank you to Benoit Blanchon for
+    suggesting to combine these tow
+    functionalities.
+    """
 
     if hasattr(request.user, 'penpal'):
         penpal = request.user.penpal
