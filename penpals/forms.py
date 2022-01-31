@@ -1,3 +1,7 @@
+"""
+Form based on the PenpalProfile model
+"""
+
 from django import forms
 
 from .models import PenpalProfile

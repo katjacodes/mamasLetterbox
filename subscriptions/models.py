@@ -1,3 +1,8 @@
+"""
+Code taken from https://testdriven.io/blog/django-stripe-subscriptions/
+and edited to fit project needs.
+"""
+
 from django.contrib.auth.models import User
 from django.db import models
 

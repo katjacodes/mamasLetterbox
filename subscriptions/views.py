@@ -1,5 +1,6 @@
 """
-Code taken from https://testdriven.io/blog/django-stripe-subscriptions/ and edited to fit project needs with the support of Benoit Blanchon.
+Code taken from https://testdriven.io/blog/django-stripe-subscriptions/
+and edited to fit project needs with the guidance of Benoit Blanchon.
 """
 
 from datetime import datetime
@@ -125,9 +126,6 @@ def stripe_webhook(request):
     except stripe.error.SignatureVerificationError:
         return HttpResponseBadRequest("Invalid signature")
 
-    # if event['type']  in ['checkout.session.completed', 'invoice.paid', 'invoice.payment_failed']:
-    #    print("Event data", event)
-
     # Handle the checkout.session.completed event
     if event['type'] == 'checkout.session.completed':
         session = event['data']['object']
@@ -145,7 +143,8 @@ def stripe_webhook(request):
             }
         )
         if created:
-            print(user.username, 'associated with stripe id', stripe_customer_id)
+            print(user.username,
+                  'associated with stripe id', stripe_customer_id)
 
     if event['type'] == 'invoice.paid':
         session = event['data']['object']

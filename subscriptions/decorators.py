@@ -1,3 +1,5 @@
+""" Custom-created decorators """
+
 from functools import wraps
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
