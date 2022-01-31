@@ -1,11 +1,11 @@
 # Mama's Letterbox
 
 <div align="center">
-    <img src="#" alt="#"/>
+    <img src="static/images/siteImage.png" alt="Landing page on different screen sizes"/>
 </div>
 <br>
 
-[View deployed site here](#)
+[View deployed site here](https://mamas-letterbox.herokuapp.com/)
 
 ## Project Description
 Many people try to reduce the presence of screens in their lives and go back to activities they used to enjoy before screens took over our lives. Writing letters is one of them. Being a parent of a young child during the pandemic has been a challenging and often isolating experience for many parents, especially moms. This website seeks to help parents, especially but not exclusively mothers of young childen, to make meaningful connections with other parents around the world through letters.
@@ -268,5 +268,5 @@ Benoît Blanchon helped me fix a bug that caused issues with my loccal Gitpod en
 
 
 ### Acknowledgements
-- Benoît Blanchon took the time to explain decorators and sginals (when to use and when not to use them) to me, helped me get a better understanding of the way Djano and Stripe work together, and provided valuable insight regarding code organization.
+- Benoît Blanchon took the time to explain decorators and sginals (when to use and when not to use them) to me, helped me get a better understanding of the way Django and Stripe work together, and provided valuable insight regarding code organization, especially the configuration information in the settings files.
 - Dom Habersack is an invaluable help whenever I have JavaScript-related questions. (And I continue to have many.)
