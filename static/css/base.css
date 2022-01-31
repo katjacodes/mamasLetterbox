@@ -204,6 +204,36 @@ div#div_id_remember.form-check {
   color: black !important;
 }
 
+div p p a.findapenpal {
+  font-weight: 800 !important;
+  text-decoration: underline !important;
+  color: black !important;
+}
+
+div p p a.findapenpal.visited {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+div p p a.findapenpal.visited:active {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+div p p a.findapenpal.active a {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: black !important;
+}
+
+div p p a.findapenpal:hover {
+  text-decoration: underline !important;
+  font-weight: 800 !important;
+  color: blue !important;
+}
+
 /* -------------------------------- LANDING PAGE -------------------------------- */
 
 .indexwrapper {
