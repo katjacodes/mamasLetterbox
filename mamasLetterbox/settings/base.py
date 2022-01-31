@@ -14,19 +14,12 @@ from pathlib import Path
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parents[2]
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tiph1-knz9m&1@s&y*&85dm34jdke^^x+uj!e78i5(*i(9orak'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
 
 # Mandatory if Django runs behind a reverse proxy (e.g. GitPod)
 USE_X_FORWARDED_HOST = True
@@ -71,8 +64,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'allauth'),
+            BASE_DIR / 'templates',
+            BASE_DIR / 'templates/allauth',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -101,8 +94,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
@@ -112,23 +103,6 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'mamasLetterbox.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.parse('postgres://hrmccmpqeydbzr:a930cf027a0628f3d31cdaae21f7fce93f2b7ca39b30c3a539946e4b7ff2a087@ec2-54-208-139-247.compute-1.amazonaws.com:5432/d7m0bgntks5htc')
-}
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -168,6 +142,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = BASE_DIR / '_static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -179,19 +154,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STANDARD_DELIVERY_PERCENTAGE = 10
 
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51KKMAhDOx8yDZB7retZqFlzZDGgWkWeguhfiEJfp9bujEYpC7kjZ3oAxoc6s62FCkGNz0YpjXIy948Nk7INJJeNB00ngWEdSkV'
-STRIPE_SECRET_KEY = 'sk_test_51KKMAhDOx8yDZB7rPOjGTHIbN1BFyQqCYAKDpmvtm3JPtRV9yCL6iwGS2ZLUsD33bew4bSRR2LQ7b0VNk343VKWb00FB1TtDgg'
-STRIPE_PRICE_ID = 'price_1KMxWyDOx8yDZB7ruta2EfFX'
-STRIPE_ENDPOINT_SECRET = 'whsec_DA6i4jwptoSYij6peUkpDbt3Je8lpERW'
-
-if 'DEVELOPMENT' in os.environ:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'katjacodes@gmail.com'
-else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
-    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PRICE_ID = os.environ.get('STRIPE_PRICE_ID')
+STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')
