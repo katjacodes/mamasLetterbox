@@ -19,34 +19,34 @@ from django.utils.timezone import utc
 
 from subscriptions.models import StripeCustomer, Subscription
 from .helpers import get_active_subscription
+from .decorators import subscription_required
 
 
 @login_required
-def home(request):
+def subscribe(request):
     """
     A view to display the subscriptions page.
     """
 
-    try:
-        # Retrieve the subscription & product
-        subscription = get_active_subscription(request.user)
+    return render(request, 'subscriptions/subscribe.html')
 
-        if subscription:
-            stripe.api_key = settings.STRIPE_SECRET_KEY
-            stripe_subscription = stripe.Subscription.retrieve(subscription.stripeSubscriptionId)
-            product = stripe.Product.retrieve(stripe_subscription.plan.product)
-        else:
-            stripe_subscription = None
-            product = None
 
-        return render(request, 'subscriptions/home.html', {
-            'subscription': stripe_subscription,
-            'product': product,
-        })
+@subscription_required
+def home(request):
+    """
+    A view to display the user's subscriptions details.
+    """
 
-    except StripeCustomer.DoesNotExist:
-        print('Nah, that didn\'t work')
-        return render(request, 'subscriptions/home.html')
+    # Retrieve the subscription & product
+    subscription = get_active_subscription(request.user)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe_subscription = stripe.Subscription.retrieve(subscription.stripeSubscriptionId)
+    product = stripe.Product.retrieve(stripe_subscription.plan.product)
+
+    return render(request, 'subscriptions/home.html', {
+        'subscription': stripe_subscription,
+        'product': product,
+    })
 
 
 @require_safe

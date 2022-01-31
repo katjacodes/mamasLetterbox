@@ -22,5 +22,5 @@ def subscription_required(func):
         if is_user_subscribed(request.user):
             return func(request, *args, **kwargs)
         else:
-            return redirect(reverse('basicdetails'))
+            return redirect(reverse('subcribe'))
     return inner
