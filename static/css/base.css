@@ -264,6 +264,10 @@ section p a.active a {
 
 /* -------------------------------- PENPAL PROFILE & EDIT PROFILE -------------------------------- */
 
+.profileowner {
+  font-family: 'Kavoon', cursive;
+}
+
 .textcenter {
   text-align: center;
   background-color: rgba(214, 173, 184, 0.8);
