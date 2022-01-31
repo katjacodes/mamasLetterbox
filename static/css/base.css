@@ -24,6 +24,7 @@ td {
 
 tr:nth-child(even) {
   background: rgba(213, 6, 71, .8);
+  color: white;
 }
 
 tr:nth-child(odd) {
@@ -49,6 +50,7 @@ td {
 }
 
 th {
+  color: white !important;
   border-radius: 5px !important;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -87,7 +89,7 @@ label {
 
 .start-here-button {
     background: rgb(213, 6, 71);;
-    color: black;
+    color: white;
     min-width: 260px;
 }
 
@@ -122,6 +124,7 @@ label {
 
 .navbarstyle {
     background-color: rgba(213, 6, 71, 0.9);
+    color: white;
 }
 
 /* -------------------------------- ALLAUTH -------------------------------- */
@@ -159,7 +162,7 @@ label {
 /* btn */
 display: inline-block;
   font-weight: 400;
-  color: black;
+  color: white;
   text-align: center;
   vertical-align: middle;
   -webkit-user-select: none;
@@ -268,7 +271,7 @@ section p a.active a {
 
 .profilebutton {
   background-color:  rgb(213, 6, 71) !important;
-  color: black;
+  color: white;
   font-weight: 600;
   font-size: 21px;
   padding: 15px;
@@ -280,7 +283,7 @@ section p a.active a {
 
 .editbutton {
   background-color:  rgb(213, 6, 71) !important;
-  color: black;
+  color: white;
   font-weight: 600;
   font-size: 16px;
   padding: 10px;
@@ -292,25 +295,25 @@ section p a.active a {
 
 div a.editbutton {
   font-weight: 800 !important;
-  color: black !important;
+  color: white !important;
 }
 
 div a.editbutton.visited {
   text-decoration: underline !important;
   font-weight: 800 !important;
-  color: black !important;
+  color: white !important;
 }
 
 div a.editbutton.visited:active {
   text-decoration: underline !important;
   font-weight: 800 !important;
-  color: black !important;
+  color: white !important;
 }
 
 div a.editbutton.active a {
   text-decoration: underline !important;
   font-weight: 800 !important;
-  color: black !important;
+  color: white !important;
 }
 
 td.penpalinfo a {
@@ -385,13 +388,13 @@ border-collapse: separate;
 }
 
 #penpals td {
-  border: 1px solid rgba(213, 6, 71, .8);
+  border: 1px solid white;
   padding: 8px;
 }
 
 #penpals tr:nth-child(odd){background-color: rgba(213, 6, 71, .8)}
 
-#penpals tr:nth-child(even){background-color: rgba(214, 173, 184, .8)}
+#penpals tr:nth-child(even){background-color: rgba(214, 173, 184, .8); color: white;}
 
 .profile {
   font-family: Arial, Helvetica, sans-serif;
@@ -513,12 +516,12 @@ td div a.listbutton:hover {
 
 div a.subscribebutton {
   background-color:  rgb(213, 6, 71) !important;
-  color: black;
+  color: white;
   font-weight: 600;
   font-size: 21px;
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid black;
+  border: 1px solid white;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     -o-border-radius: 5px;
