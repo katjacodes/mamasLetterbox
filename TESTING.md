@@ -5,7 +5,9 @@
 [View website on Heroku](#)
 
 ## Testing
-To check the validity of HTML, CSS, JavaScript, and Python code, I used **[W3C CSS Validation](https://jigsaw.w3.org/css-validator/)**, **[W3C Markup Validation](https://validator.w3.org/)**, **[JSHint](https://jshint.com/)**, and **[PEP8 online](http://pep8online.com/)**.
+To check the validity of HTML, CSS, JavaScript, and Python code, I used **[W3C CSS Validation](https://jigsaw.w3.org/css-validator/)**, **[W3C Markup Validation](https://validator.w3.org/)**, **[JSHint](https://jshint.com/)**, and **[Pylint](https://pypi.org/project/pylint/)**.
+
+Note on **PEP8 Testing**: Pylint throws errors regarding certain classes not having 'objects' members. After doing some research, I learned [that Django automatically creates classes, which Pylint does not recognize](https://forum.djangoproject.com/t/class-question-has-no-objects-member-pylint-no-member/4024) and have decided to leave the error message.
 
 
 ### Client stories testing:

@@ -132,7 +132,7 @@ Testing information can be found in a separate [TESTING.md file](TESTING.md).
 (Steps taken from and followed based on [Fraciska Du Toit's project Happybean](https://github.com/Franciskadtt/happybean))
 
 #### Setup an enviroment for variables
-You now need to set up the database with environment variables. Create a file titled env.py and make sure it is placed on top of the of file structure, on the same level as the app.py file. Alternatively, they can be added to the workspace variable section. 
+You now need to set up the database with environment variables. Create a file titled env.py and make sure it is placed in the same directory as the settings.py file. Alternatively, they can be added to the workspace variable section. 
 
 Option 1: Env.py file:
 ```
@@ -343,5 +343,5 @@ Benoît Blanchon helped me fix a bug that caused issues with my loccal Gitpod en
 
 
 ### Acknowledgements
-- Benoît Blanchon took the time to explain decorators and sginals to me and helped me get a better understanding of the way Djano and Stripe work together.
+- Benoît Blanchon took the time to explain decorators and sginals (when to use and when not to use them) to me, helped me get a better understanding of the way Djano and Stripe work together, and provided valuable insight regarding code organization.
 - Dom Habersack is an invaluable help whenever I have JavaScript-related questions. (And I continue to have many.)
