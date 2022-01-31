@@ -37,14 +37,14 @@ Currently, the general goals of the application are:
 Client Stories and the status of the features in response to those stories can be found in the [User Stories Overview](https://docs.google.com/spreadsheets/d/1CRY7aYiLONmYjMFSnk4xuDKDCOrky4-98dOgRmqB0fU/edit?usp=sharing).
 
 ### Wireframe Mockups: 
-- [Landing Page](media/mamasLetterboxHOME.png)
-- [About Page](media/mamasLetterboxABOUT.png)
-- [Login Page](media/mamasLetterboxHLOGIN.png)
-- [Profile Page](media/mamasLetterboxPROFILE.png)
-- [Profile Creation Page](media/mamasLetterboxCREATE.png)
-- [Profile Editing Page](media/mamasLetterboxEDIT.png)
-- [Subscription Page](media/mamasLetterboxSUBSCRIPTION.png)
-- [Penpals Listing Page](media/mamasLetterboxLIST.png)
+- [Landing Page](static/images/mamasLetterboxHOME.png)
+- [About Page](static/images/mamasLetterboxABOUT.png)
+- [Login Page](static/images/mamasLetterboxHLOGIN.png)
+- [Profile Page](static/images/mamasLetterboxPROFILE.png)
+- [Profile Creation Page](static/images/mamasLetterboxCREATE.png)
+- [Profile Editing Page](static/images/mamasLetterboxEDIT.png)
+- [Subscription Page](static/images/mamasLetterboxSUBSCRIPTION.png)
+- [Penpals Listing Page](static/images/mamasLetterboxLIST.png)
 
 
 ## Features
@@ -112,7 +112,6 @@ The subscription page directs the user to Stripe, where they can purchase a subs
 - [Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/) - CSS framework.
 - [jQuery](https://jquery.com/) - JavaScript framework.
 - [Google Fonts](https://fonts.google.com/) - Additional fonts.
-- [AWS Amazon S3](https://aws.amazon.com/s3/) - Amazon Simple Storage Service (Amazon S3) was used to store media and static files used in the project.
 - [Font Awesome](https://fontawesome.com/) - Icons.
 - [Stripe](https://stripe.com/docs) - Stripe was used for the subscription plan.
 
@@ -131,193 +130,17 @@ Testing information can be found in a separate [TESTING.md file](TESTING.md).
 ## Deployment 
 (Steps taken from and followed based on [Fraciska Du Toit's project Happybean](https://github.com/Franciskadtt/happybean))
 
-#### Setup an enviroment for variables
-You now need to set up the database with environment variables. Create a file titled env.py and make sure it is placed in the same directory as the settings.py file. Alternatively, they can be added to the workspace variable section. 
-
-Option 1: Env.py file:
-```
- os.environ.setdefault('SECRET_KEY', '<your_variable_here>')
- os.environ.setdefault('DEVELOPMENT', 'True')
- os.environ.setdefault('STRIPE_PUBLIC_KEY', '<your_variable_here>')
- os.environ.setdefault('STRIPE_SECRET_KEY', '<your_variable_here>')
- os.environ.setdefault('STRIPE_WH_SECRET_CH', '<your_variable_here>')
- os.environ.setdefault('STRIPE_WH_SECRET_SUB', '<your_variable_here>')
- ```
-- In ` settings.py`  add:
-```
-if os.path.exists("env.py"):
-    import env
-```
--  Add your env.py file to `.gitignore`, before pushing your changes.
-
-
-<br>Option 2: Workspace Variables:
-```
-KEY = 'SECRET_KEY', VALUE = '<your_variable_here>'
-KEY = 'DEVELOPMENT', VALUE = 'True'
-KEY = 'STRIPE_PUBLIC_KEY', VALUE = '<your_variable_here>'
-KEY = 'STRIPE_SECRET_KEY', VALUE = '<your_variable_here>'
-KEY = 'STRIPE_WH_SECRET_CH', VALUE = '<your_variable_here>'
-KEY = 'STRIPE_WH_SECRET_SUB', VALUE = '<your_variable_here>'
-KEY = 'AWS_ACCESS_KEY_ID', VALUE: '<your_variable_here>'
-KEY = 'AWS_SECRET_ACCESS_KEY', VALUE: '<your_variable_here>'
-KEY = 'USE_AWS', VALUE: 'True'
- ```
-
-- In ` settings.py`  add:
- ```
- SECRET_KEY = os.environ.get('SECRET_KEY', '')
- ```
-
-#### DEBUG 
-```
-DEBUG = 'DEVELOPMENT' in os.environ
-```
-
-### **Heroku Deployment**
-- Go to the [Heroku](https://www.heroku.com/) website. Register for an account and click on "Create a new app".
-- Setup a Heroku app within the Heroku dashboard - Type in the app name and select region the click on create app.
-- In Heroku, in your app, click on "GitHub" to connect to your repository. Type in the repository name as on GitHub. Click on "Connect".
-- Search for your repo (or sign in and connect GitHub account) and select this.
-- Then click "Hide Config Vars" in Heroku.
-- Go to the resources tab and search for Heroku Postgres. Choose the “hobby dev - free” option and submit the order form.
-- On the `settings.py file`, you will need to comment out the 'SQLite and Postgres databases' section and uncomment the 'PostgreSQL Database' section. (this is temporary, nothing should be pushed/committed just yet).
-- Add the database URL from Heroku & migrate your models to the PostgreSQL database with: 
-    ```
-    python3 manage.py migrate
-    ```
-- Create a superuser with the following command, and fill in the required information.:
-    ```
-    python3 manage.py createsuperuser
-    ```
-- In the `settings.py` file, you can now delete the 'PostgreSQL Database' section and uncomment the 'SQLite and PostgreSQL Databases' section. This means that either database can now be used interchangeably.
-- Install gunicorn and freeze that to the requirements file with the following commands:
-    ```
-    pip3 install gunicorn
-    pip3 freeze --local > requirements.txt
-    ```
-- Create a Procfile and inside, add the following:
-    ```
-    web: gunicorn mamasLetterbox.wsgi:application
-- In `settings.py`, use an if statement so that when the app runs on Heroku, you will connect to Postgres, and otherwise, it will connect to sqlite3:
-    ```
-    if 'DATABASE_URL' in os.environ:
-        DATABASES = {
-            'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-        }
-    else:
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
-    ```
-- Copy the variables from the variable enviroment one by one into the heroku config vars. They would be:
-   ```
-    KEY: 'SECRET_KEY', VALUE: “your_variable_here”
-    KEY: 'DEVELOPMENT', VALUE: "True"
-    KEY: 'STRIPE_PUBLIC_KEY', VALUE: "your_variable_here"
-    KEY: 'STRIPE_SECRET_KEY', VALUE: "your_variable_here"
-    KEY: 'STRIPE_WH_SECRET_CH', VALUE: "your_variable_here"
-    KEY: 'STRIPE_WH_SECRET_SUB', VALUE: "your_variable_here"
-    KEY: AWS_ACCESS_KEY_ID, VALUE: "AWS access key ID"
-    KEY: AWS_SECRET_ACCESS_KEY, VALUE: "AWS secret access key"
-    KEY: USE_AWS, VALUE: "True"
-    ```
-- Log in to Heroku in the CLI and temporarity disable collectstatic, with the following command:
-    ```
-    heroku config:set DISABLE_COLLECTSTATIC=1 --app happybean
-    ```
-- Add your Heroku app and local host to allowed hosts in `settings.py.`
-- Push to Github, and then to Heroku master. 
-- In Heroku, go to the 'Deploy' tab. In the section 'Deployment Method' click on 'Github - Connect to Github'. Make sure your Github profile is displayed. Add the repository name and click on 'Search'. After Heroku has found the repository, click on 'Connect'. This will connect your Heroku app to your GitHub repository. Click 'Enable automatic deploys'. Your code will automatically be deployed to Heroku as well. 
-
-### **AWS (Amazon Web Services)**
-Create an account with [AWS](www.aws.amazon.com), follow the steps and sign in. 
-- Go to the AWS management console and go to the S3 service. There, create a new bucket. Uncheck 'block all public access' and acknowledge that the bucket will be public.
-- Go to the buckets properties, and turn on static website hosting. Select 'Use this bucket to host a website', and fill in index.html and error.html, then click 'save'.
-- Go to the permissions tab, and go to CORS configuration. Paste in a CORS configuration:
-```
-[
-  {
-      "AllowedHeaders": [
-          "Authorization"
-      ],
-      "AllowedMethods": [
-          "GET"
-      ],
-      "AllowedOrigins": [
-          "*"
-      ],
-      "ExposeHeaders": []
-  }
-]
-```
-- Go to the Bucket policy tab and click 'policy generator', to create a policy. Choose 's3 bucket policy', allow all principals by typing a star. From the action dropdown menu select 'GetObject'. Copy the ARN and paste it into the ARN box. Then click 'add statment' and then click 'generate policy'. Copy the policy into the bucket policy editor. Add a slash star onto the end of the resource key. Click 'save'. 
-- Go to access control list tab, under public access, click on 'Everyone', select 'List Objects'. Then click 'save'. 
-- Go to IAM (from services menu), click on 'groups' and create a new user group. Give the group a group name (f.e. 'manage-happybean'). Then click 'create group'. 
-- Click 'policies' in the dashboard, and then click 'create policy'. Go to the JSON tab. Click 'import managed policy'. Import 'AmazonS3FullAccess'. Get the bucket ARN from the bucket policy page in S3, and paste that in after 'Resource', as a list (first the ARN, then also the ARN with a slash and star). Click 'next tags' and then 'next review'. Give it a name and description. Click 'create policy'. 
-- Go to 'groups'. Click the manage-happybean group. Go to 'permissions'. Click 'attach policy'. Select the policy you just created. Click 'add permissions' and then 'Attach policy'.
-- Go to 'users'. Click 'add user'. As username write 'happybean-staticfiles-user. Give programmatic access. Click 'next'. Add the user to the group. Click through to the end. Download the .csv file. 
-
-### **Connecting to DJANGO to S3**
-- Go back to GitPod. Install boto3 and Django storages, and freeze them to the requirement file with the following commands:
-    ```
-    pip3 install boto3
-    pip3 install django-storages
-    pip3 freeze > requirements.txt
-    ```
-- Add 'storages' to the installed apps in the settings.py file.
-- Add the following if statement:
-    ```
-    if 'USE_AWS' in os.environ:
-        AWS_STORAGE_BUCKET_NAME = 'happybean'
-        AWS_S3_REGION_NAME = 'eu-west-1'
-        AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-        AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-        AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    ```
-- On Heroku, add the AWS keys to the Config Variables (they can be found in the csv file you downloaded earlier). Also, add USE_AWS and set it to True. 
-- Remove the DISABLE_COLLECTSTATIC from the variables. 
-- In GitPod, create a file called custom_storages.py and add:
-    ```
-    from django.conf import settings
-    from storages.backends.s3boto3 import S#Boto3Storage
-
-    class StaticStorage(S3Boto3Storage):
-        location = settings.STATICFILES_LOCATION
-
-
-    class MediaStorage(S3Boto3Storage):
-        location = settings.MEDIAFILES_LOCATION 
-    ```
-- To the before mentioned if statement from above, in settings.py, also add:
-    ```
-        STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-        STATICFILES_LOCATION = 'static'
-        DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-        MEDIAFILES_LOCATION = 'media'
-
-        STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-        MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-    ```
-- Add, commit and push these changes. If you now go to the bucket, you will see all the static files. 
-- Go to your bucket and add a new folder called media. Inside it, click 'upload' and then 'add files'. Then select all the images you'd like to use. Click 'next'. Under 'manage public permissions', select 'grant public read access'.
-- On Stripe, add a new webhook endpoint, with the URL of your Heroku app, followed by 
-```/checkout/wh/```. Select 'receive all events' and click 'add endpoint'.
-
 ### How to Clone the Repository
 To clone this project into Gitpod you will need a Github account and an HTML 2 PDF Rocket account. You can [create a Github account here](https://github.com/), and you can [create an HTML 2 PDF Rocket account here.](https://www.html2pdfrocket.com/).
 
 Then follow these steps:
 1. Log into [Gitpod](https://gitpod.com) with your gitpod account.
-2. Navigate to the [Project GitHub repository](https://github.com/katjacodes/invoicingApp)
+2. Navigate to the [Project GitHub repository](https://github.com/katjacodes/mamasLetterbox)
 3. Click the green "Gitpod" button in the top right corner of the respository
 4. This will trigger a new gitpod workspace to be created based on the code in GitHub. There, you will be able to work locally.
 
 To work on the project code within a local IDE such as VSCode, Sublime Text, etc.:
-1. Navigate to the [Project GitHub repository](https://github.com/katjacodes/invoicingApp)
+1. Navigate to the [Project GitHub repository](https://github.com/katjacodes/mamasLetterbox)
 2. Click the "Code" download button next to the green "Gitpod" button.
 3. In the Clone section, select HTTPs and copy the clone URL for the repository. 
 4. Open your local terminal.
@@ -326,6 +149,108 @@ To work on the project code within a local IDE such as VSCode, Sublime Text, etc
 7. Press Enter for your local clon to be created.
 
 You will need to create a [Stripe account](https://stripe.com/) to integrate payment function for the subscription plan.
+
+### Setting the Stage
+In preparation for deployment, create a new settings folder inside the mamasLetterbox project folder, move the ```settings.py``` file inside it, and rename it to ```base.py```. The ```base.py``` file contains all the settings that are needed for in local develovpment mode as well as for deployment. Additionally, create a ```development.py``` file and a ```heroku.py``` file, each containing the respective settings and both contaning the following at the top: ```from .base import *```. This will ensure that all the settings in the ```base.py``` file extend to the othe settings files as well.
+
+Because the settings have been moved into a new folder, path information needs to be updated in the following places:
+
+In ```base.py``` change
+
+```BASE_DIR = Path(__file__).resolve().parents.parents```
+to
+```BASE_DIR = Path(__file__).resolve().parents.parents.parents``` or ```BASE_DIR = Path(__file__).resolve().parents[2]```
+
+In ```manage.py``` change
+
+```'mamasLetterbox.settings'```
+to
+```'mamasLetterbox.settings.development'```
+
+Next, download the the python-dotenv package to facilitate the connection between your ```base.py``` file and the untracked ```.env``` file you are about to create:
+
+```pip3 install python-dotenv```
+
+At the top of your base file import the following:
+
+```
+from dotenv import load_dotenv
+load_env()
+```
+
+Make sure that ```load_env()``` appears *above* ```from .base immport *```. The ```base.py``` file needs the information stored in the .env file to supply the correct information in development mode.
+
+Create an ```.env``` file at the root of the project, add it to the ```.gitignore``` file and move all the keys at the bottom of the bottom of the ```base.py``` file into it. At the bottom of the ```base.py``` file, reference the ```.env``` file, like so:
+```
+STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PRICE_ID = os.environ.get('STRIPE_PRICE_ID')
+STRIPE_ENDPOINT_SECRET = os.environ.get('STRIPE_ENDPOINT_SECRET')
+```
+
+For access to the static files in both the development and the production environment, add the following to the ```base.py``` file:
+```
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATIC_ROOT = BASE_DIR / '_static'
+```
+
+Add ```_static``` to the ```.gitignore``` file.
+
+Next, generate a new new ```SECRET_KEY``` to be used in production using a site such as [Djeecrety](https://djecrety.ir/). Add the following to the ```heroku.py``` file:
+```
+SECRET_KEY = os.environ.get('SECRET_KEY')
+```
+
+Finally, make sure that ```DEBUG = True``` is *only* part of the ```development.py``` file, *not* of the ```base.py``` or the ```heroku.py``` file to avoid creating security vulnerabilies by divulging information about the system in error messages.
+
+Next, connect your Django project to Hero and set up your congiguration variable using the Heroku Dashboard.
+
+### Heroku Deployment
+- Go to the [Heroku](https://www.heroku.com/) website. Log in or register for an account and click on "Create a new app".
+- Set up a Heroku app within the Heroku dashboard: Type in the app name and select the region closest to you, then click on create app.
+- In your app, click on "GitHub" to connect to your repository. Type in the repository name as on GitHub. Click on "Connect."
+- Go to the resources tab and search for Heroku Postgres. Choose the “hobby dev - free” option and submit the order form.
+
+- Go back to gitpod and download the django-heroku package to connect Django and Heroku:
+
+```pip3 install django-heroku```
+
+At the topf of your ```heroku.py``` file import:
+```import django_heroku```
+
+- Install gunicorn and freeze that to the requirements file with the following commands:
+    ```
+    pip3 install gunicorn
+    pip3 freeze --local > requirements.txt
+    ```
+- Create a Procfile and inside, add the following:
+    ```
+    web: gunicorn mamasLetterbox.wsgi:application
+
+- If you have existing data in your local database that you need to migrate to Heroku, temporarily change the database settings in ```development.py``` to those of ```heroku.py``` and migrate your models to the PostgreSQL database, like so: 
+    ```
+    python3 manage.py migrate
+    ```
+- Create a superuser with the following command, and fill in the required information.:
+    ```
+    python3 manage.py createsuperuser
+    
+- Don't forget to revert the changes after you are done. 
+    ```
+
+- Next, go back to the Heroku Dashboard, und under settings, add the following variables and their values:
+```DATABASE_URL```  | the Postgress database key that was generated during database setup in Heroku.
+```DJANGO_SETTINGS_MODULE``` | use the one found in the ```manage.py``` file, but instead of ```.development```, write ```.heroku```
+``` SECRET_KEY ``` 
+```STRIPE_PUBLISHABLE_KEY ```
+```STRIPE_SECRET_KEY ```
+```STRIPE_PRICE_ID ````
+```STRIPE_ENDPOINT_SECRET ```
+
+If you have set up an email connection for your Django account as well, also include the ```EMAIL_HOST_PASS``` and the ```EMAIL_HOST_USER``` generated during the set-up process.
+
+Finally, push your changes to GitHub. Then, log in to Heroku from the terminal by typing ```heroku login -i``` and entering your Heroku login credentials when prompted. Then push all your changes to Heroku: ```git push heroku main```. Your site is ready to be delployed.
 
 
 ## Credits
