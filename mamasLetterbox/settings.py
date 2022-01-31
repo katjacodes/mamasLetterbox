@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tiph1-knz9m&1@s&y*&85dm34jdke^^x+uj!e78i5(*i(9orak
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['mamas-letterbox.herokuapp.com', 'localhost']
 
 # Mandatory if Django runs behind a reverse proxy (e.g. GitPod)
 USE_X_FORWARDED_HOST = True
@@ -118,9 +118,9 @@ WSGI_APPLICATION = 'mamasLetterbox.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 if 'DATABASE_URL' in os.environ:
-    DATABASE = {
-        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
-    }
+    DATABASES = {
+        'default': dj_database_url.parse('postgres://hrmccmpqeydbzr:a930cf027a0628f3d31cdaae21f7fce93f2b7ca39b30c3a539946e4b7ff2a087@ec2-54-208-139-247.compute-1.amazonaws.com:5432/d7m0bgntks5htc')
+}
 else:
     DATABASES = {
         'default': {
