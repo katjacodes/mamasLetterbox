@@ -17,14 +17,16 @@
             <div class="frame">
                 <div class="aboutwrapper">
                     <h1 class="display-4 logo-font text-black d-flex justify-content-center">
-                        Create Your Profile
+                        {% if form.instance.pk %}Update Profile{% else %}Create Profile{% endif %}
                     </h1>
                     <form id="profile" class="profile" method="POST">
                         {% csrf_token %}
                         {{ form|crispy }}
 
-                        <div class="text-center">
-                            <button class="profilebutton" type="submit">Create Profile</button>
+                        <div class="text-center">                            
+                            <button class="profilebutton" type="submit">
+                                {% if form.instance.pk %}Update Profile{% else %}Create Profile{% endif %}
+                            </button>
                         </div>
                     </form>
                 </div>
